@@ -1,0 +1,291 @@
+[#administration]
+= Document administration
+:page-partial:
+:experimental:
+:xrefstyle: short
+:source-highlighter: highlightjs
+:icons: font
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+This section describes all the tasks carried out by document administrators at different moments of the authoring workflow.
+
+The first and most important task is the <<create-repository, creation and configuration>> of a GitHub repository to work on a document.
+Documents follow one of two possible workflows:
+
+1. They are directly created as Asciidoc documents.
+In this case the creation of the repository is truly the first action to undertake.
+
+2. The document is written in some other (collaborative) platform, and then <<conversion, converted to Asciidoc>>.
+Here we can create the repository at any time before the conversion.
+
+[WARNING]
+--
+The conversion to Asciidoc is a *one time, single direction* action.
+
+Once a document has been converted and stored in its Git repository, trying to edit it with different procedures than described in Section xref:authoring.adoc[Document authoring] of this guide is strongly discouraged.
+--
+
+[#create-repository]
+== Create the repository for a new document
+
+Every document requires the creation of a new repository in Decidim's space at GitHub.
+
+.Decidim's organization page on GitHub
+****
+[.text-center]
+https://github.com/decidim
+****
+
+The document administrator needs to be a member of the Decidim organization at GitHub to be able to create new repositories for Decidim.
+Ask to an https://github.com/orgs/decidim/people?query=+role%3Aowner[owner of the Decidim organization] if you are not already a member.
+
+The steps to get the new repository are described in the following sections.
+
+:!step:
+[#import-repo-template]
+=== (Step {counter:step:1}) Import the repository template for new documents
+
+NOTE: _Importing_ a repository is a different concept from _forking_ or _creating_ an empty one.
+
+Go to the btn:[＋ ▾] drop down menu on GitHub's top bar and select the menu:Import repository[] option, as shown in the following figure:
+
+.GitHub import option
+image::github-import-option-selection.png[Import repository option]
+
+Decidim has a https://github.com/decidim/docs-new-document-template[repository with a template for new documents] called `docs-new-document-template`.
+As shown in <<github-import-form-fig>> below:
+
+. Input `https://github.com/decidim/docs-new-document-template.git` as the repository to clone (i.e. import from).
+. Select `decidim` organization as the owner of the repository, if you have other options. If this option does not appear, you probably do not have the needed permissions (see the beginning of section <<create-repository>>).
+. Choose a name for your new repository that begins with `docs-`, a convention we use to easily find documentation repositories.
+. Press the btn:[Begin import] button.
+
+The import can take some seconds or minutes.
+
+[#github-import-form-fig]
+.GitHub import form
+image::github-import.png[Import repository, 600, align="center"]
+
+In contrast with a GitHub fork, https://help.github.com/articles/importing-a-repository-with-github-importer/[a repository import] does not keep any link to the original repository (in this case, the template).
+
+Our new repository template defines the basic file structure to facilitate:
+
+* The <<publish, online publication of the document>>.
+* The creation of multi-lingual documents (English, Spanish, Catalan).
+* Filling up all the important metadata.
+
+If you want to understand what is in the template, its contents are described in section xref:document-template.adoc#repo-anatomy[Anatomy of a document repository].
+
+[#add-collaborators]
+=== (Step {counter:step}) Add collaborators to the repository
+
+Once the repository is created, you can visit its main page in GitHub.
+If you called it, for example, `docs-my-great-content`, the URL should be `https://github.com/decidim/docs-my-great-content`.
+
+By default only you (the creator and administrator) can write to the recently created repository.
+To enable collective writing you must add collaborators going to menu:Settings[Collaborators & teams].
+
+Add the team `docs` and any other individual or team collaborator that needs access to the repository.
+Give them "Write" permission.
+
+[#github-collaborators-fig]
+.GitHub collaborators form
+image::github-collaborators.png[, 800, align="center"]
+
+=== (Step {counter:step}) Protect the `master` branch and add explicit permissions to it
+
+Go to menu:Settings[Branches].
+Under "Branch protection rules", choose branch `master`.
+
+Select options "Protect this branch" and "Restrict who can push to this branch", and deselect all other options.
+In section "People and teams with push access" add all the people and teams that you added in <<add-collaborators>>.
+Push btn:[Save changes].
+
+.GitHub branch protection options
+image::github-branch-protection.png[]
+
+Protection of branch `master` gives us an extra guarantee that nobody will overwrite this branch by mistake.
+All changes will be incremental and it will be possible to undo them if necessary.
+
+=== (Step {counter:step}) Add a short description to the repository
+
+At the top of the menu:Code[] panel you will see the following message: "_No description, website, or topics provided._"
+Press the btn:[Edit] button on the right to change the description.
+Try to use one single sentence, at most two.
+
+[#github-description-fig]
+.GitHub's Edit description button and topics option
+image::github-edit-description-and-topics.png[]
+
+=== (Step {counter:step}) Add topics (labels) to the repository
+
+As shown in <<github-description-fig>>, there is also an https://help.github.com/articles/about-topics/["Add topics" option].
+Press it.
+Add at least the topics `decidim` and `decidim-docs`.
+
+=== (Step {counter:step}) Configure other repository options
+
+Go to menu:Settings[Options] and disable "Wikis" and "Projects".
+Leave the other options in its default configuration.
+
+.GitHub's repository options
+image::github-repo-options.png[]
+
+=== Additional steps
+
+Once created and configured the public repository, the next steps the administrator can take (or task a capable writer with) are:
+
+. xref:authoring.adoc#fill-up-metadata[Fill up the metadata for the document].
+
+. xref:authoring.adoc#create-page[Create an Asciidoc file] for every web page we want to show in https://docs.decidim.org[] (we usually show every major section or chapter of a document as a separate web page).
+
+. <<conversion, Convert the document to Asciidoc>>, if we already have a preliminary version in Google Drive or written in any other format.
+
+. Set up the document for <<publish, publication at `docs.decidim.org`>>.
+
+If you have just imported your first document template, you may want to read section xref:document-template.adoc#repo-anatomy[Anatomy of a document repository], to understand how files are organized in the repository.
+
+[#conversion]
+== Convert a document to Asciidoc
+
+We use a command-line conversion tool called https://pandoc.org/[Pandoc].
+See how to install it at xref:prerequisites.adoc#install-pandoc[Install Pandoc].
+
+Pandoc can convert from Libre Office, Microsoft Office, HTML, and many other formats to Asciidoc.
+
+Imagine you have a Microsoft Word (sic) document called `MyAwesomeDoc.docx`.
+You can run (copy it as a single line command):
+
+[source, shell]
+--
+pandoc --to=asciidoc --wrap=none --atx-headers  --extract-media=images --output=my-awesome-document.adoc MyAwesomeDoc.docx
+--
+
+A beautiful Asciidoc file called `my-awesome-document.adoc` will be created with the text of your document.
+If the original document contains any image, an `images` directory will appear containing a file for each image.
+Images will be correctly referenced in the Asciidoc file.
+
+The above command is independent of input format, you only need to change your input and output file names (e.g. replace `MyAwesomeDoc.docx` to `MyAwesomeDoc.html`).
+Option `--wrap=none` means that lines will not be cut at some fixed width (by default 72 characters) at it is typically done in source code.
+
+Option `--atx-headers` means headers will be set as
+
+[source, asciidoc]
+--
+= Introduction
+--
+
+and not
+
+[source, asciidoc]
+--
+Introduction
+~~~~~~~~~~~~
+--
+
+Some recommendations when you convert with Pandoc:
+
+. Unfortunately, conversion from Microsoft Word or HTML seems to work better than from OpenDocument (`.odt`).
+If your original document is in Google Drive, you can choose to store a local copy in either Word (menu:File[Download as, Microsoft Word (.docx)]) or HTML (menu:File[Download as, Web Page (.html, zipped)]).
+. Which conversion path is best depends on the document.
+For complex documents it may be worthwhile to try some possibilities before choosing.
+. Do not convert full documents, first copy each section in a different file and then convert section by section.
+. Do not copy the front page or the table of contents.
+Those need to be re-created from Asciidoc.
+. Remove section numbering before converting.
+We want Asciidoc to number sections (and figures, tables, etc.) automatically.
+This can be done in a single action if your original document uses header styles consistently.
+It can also be done after the conversions, but it is usually more work.
+
+After the conversion, you will need to adjust some things manually:
+
+. When you move your files to the repository, images will be placed under the default image directory, `assets/images`, and all references to images in your `.adoc` files will need to be adapted accordingly (in essence, its path removed).
+. Header identifiers (or any other element identifier) could have been created, and could be useful.
+If you want to rename them, do it consistently.
+If some of them are spurious, remove them.
+. Cross references and footnotes may need manual intervention also.
+
+Pandoc has many other options described in the http://pandoc.org/MANUAL.html[Pandoc User's Guide].
+
+[#publish]
+== Publish at `docs.decidim.org`
+
+The site https://docs.decidim.org[] is generated from a number of repositories with a static site generator called https://antora.org/[Antora].
+
+There are three kinds of repositories involved:
+
+. A number of *document repositories* with the contents we want to show in the documentation site. They are based on the <<import-template-repo, document template>>.
+. A *_site_ repository*, https://github.com/decidim/docs.decidim.org[], that contains:
+* An Antora configuration file [.path]#site.yml# that acts as a _playbook_ for the site (all document repositories URLs to pull from are listed here, along with some global configuration options).
+* A [.path]#landing-page# directory that contains the landing page for the whole site (and potentially other static global pages).
+The landing page is also written in Asciidoc, following the same conventions as in document repositories.
+. An https://docs.antora.org/antora/1.0/playbook/configure-ui/[Antora UI] repository: https://github.com/decidim/docs.decidim.org-antora-ui[].
+It contains all the presentation stuff (HTML templates, CSS files, Etc.). It is also referenced by the playbook.
+
+To publish a new document in the site you need to follow the steps in this section.
+
+NOTE: TODO: how to update a document (with a preview).
+
+[#document-config-file]
+:!step:
+=== (Step {counter:step:1}) Set up the Antora document configuration file
+
+If you have <<import-repo-template, correctly applied the document template>>, your document repository contains, for every language `\{LANG}`, a file called [.path]#\{LANG}/antora.yml#.
+It is a YAML file following the syntax `property: value`.
+You have to fill up the different declared properties following the instructions given in the same file.
+
+NOTE: Do not confuse this file with the site's playbook, called [.path]#site.yml# and stored at https://github.com/decidim/docs.decidim.org[].
+
+=== (Step {counter:step:1}) Check that [.path]#single-page.adoc# and [.path]#nav.adoc# are OK
+
+For every language `\{LANG}`, there are files called:
+
+* [.path]#\{LANG}/modules/ROOT/pages/single-page.adoc#
+* [.path]#\{LANG}/modules/ROOT/nav.adoc#
+
+If you and your collaborators have followed the instructions in section xref:authoring.adoc#create-page[Create new documentation page], then all should be ok, but this it is the moment to double-check.
+
+=== (Step {counter:step:1}) Add the document to the site repository
+
+Here you need to change the _site_ repository, https://github.com/decidim/docs.decidim.org[].
+
+This time we will follow a proper Git workflow:
+
+. Make your own GitHub fork of the site repository.
+Work with your copy in the following numbered items.
+. Edit file [.path]#site.yml# to add the new document under the `content` section (repeatedly for every language).
+The syntax for the `content` section is described in https://docs.antora.org/antora/1.0/playbook/configure-content-sources/[the Antora Manual].
+. Edit files [.path]#landing-page/\{LANG}/modules/ROOT/nav.adoc# and add a https://docs.antora.org/antora/1.0/page/page-id/[cross-reference (xref)] to the first page of the new document (and other pages if needed).
+. Edit files [.path]#landing-page/\{LANG}/modules/ROOT/pages/index.adoc# and add a https://docs.antora.org/antora/1.0/page/page-id/[cross-reference (xref)] to the first page of the new document.
+. Commit your changes and make a pull request (PR).
+If everything goes well you will an automatic comment to the PR with an URL for a preview.
+Use the preview to check that the site looks fine.
+. Either accept the PR, if you have permissions to do so, or wait.
+
+NOTE: TODO: Manually deploy from the Netlify web interface is needed at the moment.
+
+== Generate a PDF file
+
+NOTE: TODO.
+
+// == Merge changes from writers
+
+// == Update the configuration
+
+== Add a new language to a document
+
+Here we have two different cases:
+
+. Add a language already present in the document template (Catalan, English, Spanish).
+. Add a new language not present in the template.
+
+For the first case you can basically follow the same steps needed for xref:authoring.adoc#create-page[creating a new page], but this time you may need to add more than one file.
+
+In the second case, you can simply replicate the necessary directory structure for the new language, but in case the new language is going to be used in many future documents, you better xref:document-template.adoc[update the template].

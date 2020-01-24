@@ -1,0 +1,463 @@
+[[what-nobody-tells-you-about-documentation]]
+= What nobody tells you about documentation
+Daniele Procida, May 19, 2017
+// article, book, inline or manpage
+////////////////////////////////////////////////////////////////////////////////
+:doctype: article
+:encoding: utf-8
+:source-language: asciidoc
+:lang: fr
+ifndef::env-github[:icons: font]
+:toc:
+:toc: left
+ifndef::imagesdir[:imagesdir: images]
+:favicon: ./images/favicon.ico
+// enable menu & keyboard
+:experimental:
+// embed image in html
+:data-uri: yes
+// equations-> matjax
+:stem:
+:eqnums: yes
+// disable footer stamp
+:nofooter:
+:reproducible:
+////////////////////////////////////////////////////////////////////////////////
+:experimental:
+:page-partial:
+:source-highlighter: highlightjs
+:icons: font
+// permit open link in another tab, like http://batchrocket.eu/fr/application[atelier,window="_blank"]
+:linkattrs:
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+
+// Start writing here
+
+image:documentation-blogpost-teaser.png[800x450]
+
+However hard you work on documentation, it won't work for your software - unless you do it the right way.
+
+
+image:danieleprocida.png[Daniele Procida]
+[quote, Daniele Procida]
+____
+There is a secret that needs to be understood in order to write good software documentation: there isn’t one thing called documentation, there are *four*.
+____
+
+
+They are: __tutorials__, __how-to guides__, _explanation_ and _technical reference._ They represent four different purposes or functions, and require four different approaches to their creation. Understanding the implications of this will help improve most software documentation - often immensely.
+
+If you'd prefer to watch a video covering this topic, here is it (courtesy of PyCon Australia 2017).
+
+// https://www.youtube.com/watch?v=t4vKPhjcMZg&feature=emb_title
+video::t4vKPhjcMZg[youtube,width=800,height=450,opts="autoplay,loop,modest"]
+
+
+
+[[introduction]]
+== Introduction
+
+It doesn’t matter how good your software is, because **if the documentation is not good enough, people will not use it**.
+
+Even if for some reason they have to use it because they have no choice, without good documentation, they won’t use it effectively or the way you’d like them to.
+
+Nearly everyone understands this. Nearly everyone knows that that they need good documentation, and **most people try to create good documentation**.
+
+And **most people fail**.
+
+Usually, it’s not because they don’t try hard enough. Usually, it’s because they are not doing it the right way.
+
+In this article I will explain how you can make your documentation better, not by working harder at it, but by doing it the right way. *The right way is the easier way* - easier to write, and easier to maintain.
+
+There are some very simple principles that govern documentation that are very rarely if ever spelled out. They seem to be a secret, though they shouldn’t be.
+
+If you can put these principles into practice, it will make your documentation better and your project, product or team more successful - that’s a promise.
+
+[[the-secret]]
+== The secret
+
+Documentation needs to include and be structured around its *four different functions:* __tutorials__, __how-to guides__, _explanation_ and _technical reference._ Each of them **requires a distinct mode of writing**. People working with software need these four different kinds of documentation at different times, in different circumstances - so software usually needs them all.
+
+And documentation needs to be explicitly structured around them, and they all must be kept separate and distinct from each other.
+
+
+[[tutorials]]
+=== Tutorials
+
+A tutorial:
+
+* is *learning-oriented*
+* allows the newcomer to get started
+* is a lesson
+
+_Analogy: teaching a small child how to cook_
+
+[[how-to-guides]]
+=== How-to guides
+
+A how-to guide:
+
+* is *goal-oriented*
+* shows how to solve a specific problem
+* is a series of steps
+
+_Analogy: a recipe in a cookery book_
+
+[[explanation]]
+=== Explanation
+
+An explanation:
+
+* is *understanding-oriented*
+* explains
+* provides background and context
+
+_Analogy: an article on culinary social history_
+
+[[reference]]
+=== Reference
+
+A reference guide:
+
+* is *information-oriented*
+* describes the machinery
+* is accurate and complete
+
+_Analogy: a reference encyclopaedia article_
+
+This division makes it obvious to both author and reader what information goes where. It tells the author __how to write__, and __what to write__, and __where to write it__. It saves the author from wasting a great deal of time trying to wrestle the information they want to impart into a shape that makes sense, because **each of these kinds of documentation has only one job**.
+
+In fact, it’s extremely hard to maintain good documentation that doesn’t implicitly or explicitly recognise the quadrants of this scheme. The demands of each kind are different from those of the others, so **any attempt at documentation that fails to maintain this structure suffers**, as it’s pulled in different directions at once.
+
+Once you understand the structure, it becomes a very useful tool for analysing existing documentation, and understanding what needs to be done to improve it.
+
+[[project-documentation]]
+=== Project documentation
+
+You may well ask: where do things like changelogs, contribution policies, and other information about the project fit into this scheme? The answer is that they do not - because they are, strictly speaking, _project documentation_ rather than __documentation of the software itself__,
+
+They can simply be kept in appropriately-named sections alongside the other material - as long as they are not mixed up _in_ it.
+
+With that in mind, let's explore each of the four key functions.
+
+'''''
+
+[[tutorials-1]]
+== Tutorials
+
+Tutorials are _lessons_ that take the reader by the hand through a series of steps to complete a project of some kind. They are what your project needs in order to show a beginner that they can achieve something with it.
+
+They are wholly **learning-oriented**, and specifically, they are oriented towards _learning how_ rather than __learning that__.
+
+**_You_ are the teacher**, and you are *responsible* for what the student will do. Under *your* instruction, the student will execute a series of actions to achieve some **end**.
+
+The end and the actions are up to you, but deciding what they should be can be hard work. The end has to be __meaningful__, but also _achievable_ for a complete beginner.
+
+_Consider an analogy of teaching a child to cook._
+
+_What_ you teach the child to cook isn’t really important. What’s important is that the child finds it enjoyable, and gains confidence, and wants to do it again.
+
+_Through_ the things the child does, it will learn important things about cooking. It will learn what it is like to be in the kitchen, to use the utensils, to handle the food.
+
+This is because **using software, like cooking, is a matter of _craft_**. It’s knowledge - but it is _practical_ knowledge, not _theoretical_ knowledge. When we learn a new craft or skill, we always begin learning it by doing.
+
+The important thing is that having done the tutorial, the learner is in a position to make sense of the rest of the documentation, and the software itself.
+
+Most software projects have really bad - or non-existent - tutorials. Tutorials are what will turn your learners into users. *A bad or missing tutorial will prevent your project from acquiring new users.*
+
+Good tutorials are very difficult to write. They need to be useful for the beginner, easy to follow, meaningful and extremely robust.
+
+[[how-to-write-good-tutorials]]
+=== How to write good tutorials
+
+[[allow-the-user-to-learn-by-doing]]
+==== Allow the user to learn by doing
+
+*In the beginning, we only learn anything by doing* - it’s how we learn to talk, or walk.
+
+In your software tutorial, your learner needs to _do_ things. The different things that they do while following your tutorial need to cover a wide range of tools and operations, building up from the simplest ones at the start to more complex ones.
+
+[[get-the-user-started]]
+==== Get the user started
+
+It’s perfectly acceptable if your beginner’s first steps are hand-held baby steps. It’s also perfectly acceptable if what you get the beginner to do is not the way an experienced person would, or even if it’s not the ‘correct’ way - a tutorial for beginners is not the same thing as a manual for best practice.
+
+The point of a tutorial is to get your learner **started on their journey**, not to get them to a final destination.
+
+[[make-sure-that-your-tutorial-works]]
+==== Make sure that your tutorial works
+
+One of your jobs as a tutor is to inspire the beginner’s confidence: in the software, in the tutorial, in the tutor and, of course, in their own ability to achieve what’s being asked of them.
+
+There are many things that contribute to this. A friendly tone helps, as does consistent use of language, and a logical progression through the material. **But the single most important thing is that what you ask the beginner to do _must work_**. The learner needs to see that the actions you ask them to take have the effect you say they will have.
+
+If the learner's actions produce an error or unexpected results, your tutorial has failed - even if it’s not your fault. When your students are there with you, you can rescue them; if they’re reading your documentation on their own you can’t - so you have to prevent that from happening in advance. This is without doubt easier said than done.
+
+[[ensure-the-user-sees-results-immediately]]
+==== Ensure the user sees results immediately
+
+*Everything the learner does should accomplish something comprehensible, however small.* If your student has to do strange and incomprehensible things for two pages before they even see a result, that’s much too long. The effect of every action should be visible and evident as soon as possible, and the connection to the action should be clear.
+
+The conclusion of each section of a tutorial, or the tutorial as a whole, must be a meaningful accomplishment.
+
+[[make-your-tutorial-repeatable]]
+==== Make your tutorial repeatable
+
+*Your tutorial must be reliably repeatable.* This not easy to achieve: people will be coming to it with different operating systems, levels of experience and tools. What’s more, any software or resources they use are quite likely themselves to change in the meantime.
+
+The tutorial has to work for all of them, every time.
+
+Tutorials unfortunately need regular and detailed testing to make sure that they still work.
+
+[[focus-on-concrete-steps-not-abstract-concepts]]
+==== Focus on concrete steps, not abstract concepts
+
+**Tutorials need to be _concrete_**, built around specific, particular actions and outcomes.
+
+The temptation to introduce abstraction is huge; it is after all how most computing derives its power. But all learning proceeds from the _particular and concrete_ to the __general and abstract__, and asking the learner to appreciate levels of abstraction before they have even had a chance to grasp the concrete is poor teaching.
+
+[[provide-the-minimum-necessary-explanation]]
+==== Provide the minimum necessary explanation
+
+*Don’t explain anything the learner doesn’t need to know in order to complete the tutorial.* Extended discussion is important - just not in a tutorial. In a tutorial, it is an obstruction and a distraction. Only the bare minimum is appropriate. Instead, link to explanations elsewhere in the documentation.
+
+[[focus-only-on-the-steps-the-user-needs-to-take]]
+==== Focus only on the steps the user needs to take
+
+*Your tutorial needs to be focused on the task in hand.* Maybe the command you’re introducing has many other options, or maybe there are different ways to access a certain API. It doesn’t matter: right now, your learner does not need to know about those in order to make progress.
+
+'''''
+
+[[how-to-guides-1]]
+== How-to guides
+
+How-to guides take the reader through the steps required to solve a real-world problem.
+
+They are recipes, directions to achieve a specific end - for example: __how to create a web form__; __how to plot a three-dimensional data-set__; __how to enable LDAP authentication__.
+
+They are wholly **goal-oriented**.
+
+_If you'd like an analogy, think about a recipe, for preparing something to eat._
+
+A recipe has a clear, defined end. It addresses a specific question. It shows someone - who can be assumed to have some basic knowledge already - how to achieve something.
+
+How-to guides are quite distinct from tutorials. A how-to guide is an answer to a question that a true beginner might not even be able to formulate.
+
+In a how-to guide, you can assume some knowledge and understanding. You can assume that the user already knows how to do basic things and use basic tools.
+
+How-to guides in software documentation tend to be done fairly well. They’re also fun and easy to write.
+
+[[how-to-write-good-how-to-guides]]
+=== How to write good how-to guides
+
+[[provide-a-series-of-steps]]
+==== Provide a series of steps
+
+*How-to guides must contain a list of steps, that need to be followed in order* (just like tutorials to). You don’t have to start at the very beginning, just at a reasonable starting point. How-to guides should be reliable, but they don’t need to have the cast-iron repeatability of a tutorial.
+
+[[focus-on-results]]
+==== Focus on results
+
+**How-to guides must focus on achieving a practical goal**. Anything else is a distraction. As in tutorials, detailed explanations are out of place here.
+
+[[solve-a-problem]]
+==== Solve a problem
+
+**A how-to guide must address a specific question or problem**: _How do I …?_
+
+This is one way in which how-to guides are distinct from tutorials: when it comes to a how-to guide, the reader can be assumed to know _what_ they should achieve, but don’t yet know _how_ - whereas in the tutorial, _you_ are responsible for deciding what things the reader needs to know about.
+
+[[dont-explain-concepts]]
+==== Don’t explain concepts
+
+*A how-to guide should not explain things.* It’s not the place for discussions of that kind; they will simply get in the way of the action. If explanations are important, link to them.
+
+[[allow-for-some-flexibility]]
+==== Allow for some flexibility
+
+*A how-to guide should allow for slightly different ways of doing the same thing.* It needs just enough flexibility in it that the user can see how it will apply to slightly different examples from the one you describe, or understand how to adapt it to a slightly different system or configuration from the one you’re assuming. Don’t be so specific that the guide is useless for anything except the exact purpose you have in mind.
+
+[[leave-things-out]]
+==== Leave things out
+
+*Practical usability is more valuable than completeness.* Tutorials need to be complete, end-to-end guides; how-to guides do not. They can start and end where it seems appropriate to you. They don’t need to mention everything that there is to mention either, just because it is related to the topic. A bloated how-to guide doesn’t help the user get speedily to their solution.
+
+[[name-them-well]]
+==== Name them well
+
+*The title of a how-to document should tell the user exactly what it does.* _How to create a class-based view_ is a good title. _Creating a class-based view_ or worse, __Class-based views__, are not.
+
+'''''
+
+[[reference-guides]]
+== Reference guides
+
+Reference guides are _technical descriptions of the machinery_ and how to operate it.
+
+Reference guides have one job only: to describe. They are code-determined, because ultimately that's what they describe: key classes, functions, APIs, and so they should list things like functions, fields, attributes and methods, and set out how to use them.
+
+Reference material is **information-oriented**.
+
+By all means technical reference can contain examples to illustrate usage, but it should not attempt to explain basic concepts, or how to achieve achieve common tasks.
+
+Reference material should be **austere and to the point**.
+
+__The culinary analogy might be an ecyclopaedia article about an ingredient__, describing its provenance, its behaviour, its chemical constituents, how it can be cooked.
+
+Note that description *does* include basic description of how to use the machinery - how to instantiate a particular class, or invoke a certain method, for example, or precautions that must be taken when passing something to a function. However this is simply part of its function as technical reference, and emphatically *not* to be confused with a how-to guide - _describing correct usage of software_ (technical reference) is not the same as _showing how to use it to achieve a certain end_ (how-to documentation).
+
+For some developers, reference guides are the only kind of documentation they can imagine. They already understand their software, they know how to use it. All they can imagine that other people might need is technical information about it.
+
+Reference material tends to be written well. It can even - to some extent - be generated automatically, but this is never sufficient on its own.
+
+[[how-to-write-good-reference-documentation]]
+=== How to write good reference documentation
+
+[[structure-the-documentation-around-the-code]]
+==== Structure the documentation around the code
+
+**Give reference documentation the same structure as the codebase**, so that the user can navigate both the code and the documentation for it at the same time. This will also help the maintainers see where reference documentation is missing or needs to be updated.
+
+[[be-consistent]]
+==== Be consistent
+
+*In reference guides, structure, tone, format must all be consistent* - as consistent as those of an encyclopaedia or dictionary.
+
+[[do-nothing-but-describe]]
+==== Do nothing but describe
+
+**The only job of technical reference is to describe**, as clearly and completely as possible. Anything else (explanation, discussion, instruction, speculation, opinion) is not only a distraction, but will make it harder to use and maintain. Provide examples to illustrate the description when appropriate.
+
+Avoid the temptation to use reference material to instruct in how to achieve things, beyond the basic scope of using the software, and don’t allow explanations of concepts or discussions of topics to develop. Instead, link to how-to guides, explanation and introductory tutorials as appropriate.
+
+[[be-accurate]]
+==== Be accurate
+
+*These descriptions must be accurate* and kept up-todate. Any discrepancy between the machinery and your description of it will inevitably lead a user astray.
+
+'''''
+
+[[explanation-1]]
+== Explanation
+
+Explanation, or discussions, __clarify and illuminate a particular topic__. They _broaden_ the documentation’s coverage of a topic.
+
+They are **understanding-oriented**.
+
+Explanations can equally well be described as __discussions__. They are a chance for the documentation to relax and step back from the software, taking a wider view, illuminating it from a higher level or even from different perspectives. You might imagine a discussion document being read at leisure, rather than over the code.
+
+This section of documentation is rarely explicitly created, and instead, snippets of explanation are scattered amongst other sections. Sometimes, the section exists, but has a name such as _Background_ or _Other notes_ and doesn't really do justice to the function.
+
+Discussions are less easy to create than it might seem - things that are straightforward to explain when you have the starting-point of someone’s question are less easy when you have a blank page and and have to write down something about it.
+
+A topic isn’t defined by a specific task you want to achieve, like a how-to guide, or what you want the user to learn, like a tutorial. It’s not defined by a piece of the machinery, like reference material. It’s defined by what *you* think is a reasonable area to try to cover at one time, so the division of topics for discussion can sometimes be a little arbitrary.
+
+[[how-to-write-good-explanation]]
+=== How to write good explanation
+
+[[provide-context]]
+==== Provide context
+
+*Explanations are the place for background and context* - for example, an __Web forms and how they are handled in Django__, or __Search and django CMS__.
+
+They can also explain _why_ things are so - design decisions, historical reasons, technical constraints.
+
+[[discuss-alternatives-and-opinions]]
+==== Discuss alternatives and opinions
+
+**Explanation can consider alternatives**, or multiple different approaches to the same question. For example, in an article on Django deployment, it would be appropriate to consider and evaluate different web server options,
+
+Discussions can even consider and weigh up contrary _opinions_ - for example, whether test modules should be in a package directory, or not.
+
+[[dont-instruct-or-provide-technical-reference]]
+==== Don’t instruct, or provide technical reference
+
+*Explanation should do things that the other parts of the documentation do not.* It’s not the place of an explanation to instruct the user in how to do something. Nor should it provide technical describe. These functions of documentation are already taken care of in other sections.
+
+'''''
+
+[[about-the-structure]]
+== About the structure
+
+[[why-isnt-this-obvious]]
+=== Why isn't this obvious?
+
+This structure is clear, and it works, but there is a reason why it's not so obvious, and that is the way the characteristics of each quadrant of the documentation overlap with those of its neighbours in the scheme.
+
+image:what_nobody_tells_you_about_documentation_extract_3001.png[1920x1080]
+
+_Tutorials and how-to guides_ are similar because they are both concerned with **describing practical steps**, while what _how-to guides_ share with __technical reference__is that they’re **what we need when we are actually at work, coding**. _Reference guides_ and _explanation_ are similar because they’re concerned with **theoretical knowledge**, and finally, what _tutorials_ have in common with _explanation_ is that they **are most useful when we are studying**, rather than actually working:
+
+ 
+
+[cols=",,",options="header",]
+|============================================
+|  |Most useful when we’re studying |Most useful when we’re working
+|*Practical steps* |Tutorials |How-to guides
+|*Theoretical knowledge* |Explanation |Reference
+|============================================
+
+ 
+
+Given these overlaps, it's not surprising that the different kinds of documentation become confused and mixed in with each other.
+
+Though it's rare to find it clear examples of it used fully, a great deal of documentation recognises, in different ways, each of these four functions.
+
+Some projects do adopt it fully, including https://docs.djangoproject.com/en/1.11/#how-the-documentation-is-organized[Django] (though https://docs.djangoproject.com/en/1.8/[this wasn't made explicit in earlier versions]), and http://docs.django-cms.org/en/release-3.4.x/[django CMS]. It has proved its worth in both projects.
+
+
+// ajout perso
+You can see also what's on for this https://docs.divio.com/en/latest/index.html[divio developpers docs,window="_blank"]
+image:divio-dev-handbook.png[1920x1080]
+
+
+[[about-the-analysis]]
+=== About the analysis
+
+The analysis of documentation in this article is based on several years of experience writing and maintaining documentation, and much time spent considering how to improve it.
+
+It’s also based on sound principles that come from a variety of disciplines. For example, its conception of tutorials has a pedagogical basis; it posits a tutor and a learner, and considers using software to be a craft in which abstract understanding of general principles follows from concrete steps that deal with particulars.
+
+[[making-documentation-work]]
+== Making documentation work
+
+One of the biggest headaches that documentation maintainers have to deal with is not having a clear picture of what they should be doing. They write and rewrite, but find it hard to make it fit together in satisfactory ways.
+
+This structure resolves those questions by making clear distinctions and separations. They make documentation that is easier to write and maintain, that’s easier to use and to find one's way around in.
+
+The documentation doesn’t write itself - but it’s now possible to write it without __also__having to wrestle with poor fit, or unclear scope or doubt about what should be included or what style to adopt. It becomes much clearer _what_ to write, _how_ to write it, and _where_ to put it.
+
+It serves users better, because for all the different phases in the cycle of their interaction with the software they will find the right kind of documentation, that serves the needs of that moment.
+
+Writing documentation that explicitly and distinctly addresses each of the four quadrants helps the software attract and keep more users, who will use it more effectively - and _that_ is one of the things the creators of software want most of all.
+
+[[about-the-divio-expert-series]]
+== About the Divio Expert series
+
+https://www.divio.com/en/company/about/[Our experts] really do deserve the name. Between them they have decades of Django development experience; the depth and breadth of the expertise we are able able to offer is world-class. They include core developers of Django, django CMS and other notable projects, and the architects of very large systems such as the Divio Cloud infrastructure.
+
+The new Divio Expert weblog series aims to share some of this expertise. For updates on new articles, follow https://twitter.com/divio[our Twitter feed], or subscribe to our (very low volume) newsletter.
+
+
+
+image:danieleprocida.png[link="https://www.divio.com/blog/author/daniele-procida/"]
+
+Daniele Procida
+
+Author at Divio
+
+'''''
+
+
+
+https://status.divio.com[status.divio.com]
+
+This site is built with Django & powered by Divio Cloud
+
+COPYRIGHT © 2001-2020 DIVIO AG. ALL RIGHTS RESERVED.

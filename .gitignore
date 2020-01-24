@@ -1,0 +1,11 @@
+## dossiers générés par Antora
+/build/
+/public/
+## si on ne veut que les fichiers "sources" asciidoc, yaml, etc.
+## -> suppression des fichiers générés par Antora
+*.html
+*.pdf
+# junk crée par explorateur win et mac
+Thumbs.db
+.DS_store
+.history

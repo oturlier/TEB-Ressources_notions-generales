@@ -1,0 +1,359 @@
+= Eartship
+Pascal Faucompré
+2 mai 2017
+//
+:doctype: article
+:encoding: utf-8
+:source-language: asciidoc
+:lang: fr
+ifndef::env-github[:icons: font]
+:toc:
+:toc: left
+:toc-title: Sommaire
+ifndef::imagesdir[:imagesdir: images]
+:favicon: ./images/favicon.ico
+// enable menu & keyboard
+:experimental:
+// embed image in html
+:data-uri: yes
+// equations-> matjax
+:stem:
+:eqnums: yes
+// disable footer stamp
+:nofooter:
+:reproducible:
+// permit open link in another tab, like http://batchrocket.eu/fr/application[atelier,window="_blank"]
+:linkattrs:
+// URis & replacements
+:uri_geonef_ai: https://www.build-green.fr/earthship-et-geonef-avantages-et-inconvenients/
+:uri_MR: https://fr.wikipedia.org/wiki/Mike_Reynolds_(architecte)
+
+
+// start write here
+
+.source de l'article : clic sur l'image
+image:une-earthship-phoenix.jpg[link="{uri_geonef_ai}",window="_blank"]
+// You can see also what's on for this https://docs.divio.com/en/latest/index.html[divio developpers docs,window="_blank"]
+// image:divio-dev-handbook.png[1920x1080]
+// image::https://img.shields.io/badge/License-Apache%202.0-blue.svg[link="http://www.apache.org/licenses/LICENSE-2.0"]
+
+[abstract]
+Imaginez une maison que vous construiriez avec des matériaux majoritairement recyclés, sans se brancher aux réseaux d’eau et d’électricité, n’ayant  quasiment aucun besoin de chauffage ou de climatisation toute l’année, quel que soit l’endroit du monde où elle se trouve et dans laquelle vous produiriez vos propres aliments ! C’est le concept presque parfait pour Build Green ! Et cette maison a un nom : la Earthship ou Géonef (en français). Mais est-ce vraiment la maison idéale ?
+
+
+Comme à notre habitude, nous allons décortiquer ce type de construction pour vous en détailler son histoire, son concept et surtout ses qualités et défauts ...
+
+== Histoire
+
+En 1969, alors qu’il vient d’être diplômé en architecture, {uri_MR}[Michael Reynolds], un jeune américain utopiste rêve de construction durable impactant le moins possible son environnement, à partir de matériaux recyclés, de terre et de bois. Oui, mais voilà, à l’ère du béton et de l’acier, tout le monde le prend pour un illuminé et personne ne veut l’aider à financer son projet d’étude expérimentale en architecture écologique.
+
+[.right]
+.1er Earthship en boites d’alu recyclées
+image:michael-reynolds-1972-earthship-250x181.jpg[]
+
+Il décide de se lancer seul dans ce projet et publie une étude dans le magazine américain Architectural Record en 1971. Sa première maison fut construite l’année suivante, dans le désert de Taos au Nouveau-Mexique sur une étendue de 640 hectares, où il établit une communauté expérimentale qui recense désormais plus de 70 maisons.
+
+Au fil du temps, les Earthships incorporent des équipements conçus pour améliorer l’autonomie, le confort et les performances : panneaux solaires, panneaux de refroidissement géothermique, récupération d’eau, jardin biologique, traitement des eaux usées.
+
+Pourtant *dans les années 80*, des clients déçus le poursuivent en justice pour des problèmes d’étanchéité, d’inadaptation climatique, d’illégalité et de dangerosité de ses constructions... En *1990* le _Conseil de l’Ordre des architectes_ du Nouveau-Mexique lui retire alors sa licence d’architecte, en lui interdisant de continuer son activité au Nouveau-Mexique. Il sombre alors dans la dépression.
+
+Il lui faudra attendre *17 ans* de procédures juridiques pour retrouver sa licence d’architecture. Entre temps, Il publie plusieurs livres et crée the Earthship Biotecture Academy qui forme et accompagne à travers le monde des projets d’habitation et même d’écoles.
+
+Bien que décrié et attaqué de toute part par ses pairs, Reynolds a été élevé comme un prophète du mouvement vert. Un documentaire lui est même consacré en 2007, Garbage Warrior , glorifiant sa vie et son oeuvre.
+
+
+.Michael Reynolds devant sa maison
+image:mickael-reynolds-earthship-taos.jpg[]
+
+Aujourd’hui, il y a environ 1 000 Earthships, principalement aux États-Unis, mais aussi en Europe (Belgique, Luxembourg, Espagne, France...), mode de vie qui, finalement, est loin de l’image beatnik qu’elle nous laisse présager au premier regard.
+
+
+== Concept des "Earthship biotecture" (ou Géonefs)
+
+Pour Michael Reynolds, véritable avant-gardiste de l’architecture verte, « nos déchets valent de l’or ». Si l’esthétique n’est pas prioritaire, le confort de vie, la simplicité de mise en place et l’utilisation de matériaux de proximité mis à disposition par la nature le sont nettement plus !
+
+Les objectifs à atteindre dans une géonef sont les suivants :
+
+* utiliser les apports passifs du soleil et la masse thermique de la terre pour des performances thermiques et énergétiques naturellement efficaces
+* employer un maximum de déchets (pneus, canettes, bouteilles) et de matériaux naturels, (bois, terre, torchis, ...)
+* viser l’autonomie des habitants en énergie, en eau, en alimentation et pour les déchets
+
+=== Quel est le principe architectural du earthship ?
+
+D’après Michael Reynolds, «_ces principes de conception et de construction sont suffisamment universels pour s’appliquer partout_» et donc se passer de tout raccordement aux réseaux d’énergie, d’eau et d’assainissement.
+
+.Principe du Earthship
+image:principe-earhtship.jpg[]
+
+Dans un earthship, il n’y a pas de chauffage ni de climatisation. Comme dans une maison passive, son architecture est étudiée pour utiliser au maximum les apports solaires, sur le principe du bioclimatisme. La serre solaire et ses baies vitrées orientées plein sud, vont emprisonner cette chaleur indispensable au confort de vie. Les nombreuses plantes vertes et cultures de la serre jouent le rôle de régulateurs thermiques. L’excès de chaleur l’été est évacué par une fenêtre en puits à l’avant du toit.
+
+Les chaleurs d’origine humaine et ménagère viennent compléter l’hiver les apports thermiques. On fait l’appoint avec un système de ventilation soit passif (sur le principe du puits canadien) soit en double-flux. La masse thermique du earthship, constituée par la terre, absorbe la chaleur en excès de la journée pour la restituer plus tard.
+
+Ainsi, la plupart des earthships sont semi-enterrés, avec un mur de refends en pneus et entièrement recouvert de terre sur la partie nord, pour se protéger des aléas climatiques et du manque d’ensoleillement.
+
+WARNING: Les règles de construction du earthship sont des principes théoriques de base qu’il convient d’adapter au climat local et aux contraintes du terrain.
+
+
+=== Quels matériaux pour un Earthship ?
+
+[.right]
+.earthship en construction mur pneus charpente
+image:earthship-en-construction-mur-pneus-carpente-250x166.jpg[]
+
+La base du concept biotecture est d’utiliser un maximum de matériaux recyclés dont on connaît l’origine et dont on a testé les usages. Les murs de soutènement du bâtiment sont réalisés en pneus remplis de terre damée qu’on recouvre d’enduit en terre ou torchis (mélange de paille ou chanvre, terre et chaux). La toiture est une charpente en bois et le toit, le plus souvent, est recouvert d’un bac acier et/ou de terre pour laisser se développer une végétation spontanée, processus appelé végétalisation.
+
+Les canettes d’aluminium ou boîtes de conserves, les bouteilles en verre, sont des matériaux recyclés de choix pour les parois intérieures.
+
+Pour le revêtement de sol, plusieurs techniques naturelles peuvent êtres adoptées comme la terre battue ou le bois cordé. Selon l’endroit où l’on se trouve, une isolation du plancher peut être préconisée pour compenser les faibles températures du sol.
+
+Seule la façade vitrée sur le principe des serres solaires peut nécessiter des matériaux sur-mesure. Mais on peut aussi concevoir la façade vitrée en fonction des vitres ou fenêtres collectées.
+
+.Michael Reynolds devant un earthsip en construction
+image:EARTHSHIPS-22.jpg[]
+
+Le mobilier est autant que possible réalisé à partir de matériau recyclé ou d’anciens meubles restaurés de préférence de façon rustique pour limiter les usages de produits toxiques. A chacun ensuite d’adapter la décoration à ses goûts.
+
+
+=== Quelles solutions et équipements pour atteindre l’autonomie avec un earthship ?
+
+Au fil du temps et des adaptations, les Earthships incorporent des équipements conçus pour améliorer leur autonomie, leur confort et leurs performances.
+Confort thermique
+
+[.right]
+.principe d'inertie thermique du earthship
+image:inertie-du-earthship-250x166.jpg[]
+
+La masse thermique générée par les parois en terre est la partie la plus intéressante du concept. Cette masse doit maintenir l’énergie calorifique et la réguler. C’est l’exemple de la grotte : il fait plus chaud à l’intérieur quand il fait froid dehors, et plus frais à l’intérieur quand il fait chaud dehors.
+
+Par ailleurs, si cette masse thermique peut s’avérer utile dans des régions régulièrement ensoleillées, il est nécessaire de la compléter par une isolation du sol et des parois pour des zones (montagne, pays du nord) où le soleil est moins présent.
+
+Mais cette solution ne peut être efficace sans le complément d’un système de ventilation naturelle, via un système de type puits canadien, qui permettra à la fois de renouveler l’air intérieur et de réguler la température lors de fortes variations, selon les saisons et l’emplacement du earthship.
+
+Un point crucial sera traité en fonction de la localisation : l’évacuation de l’air chaud. Si le climat est de nature à provoquer de fortes températures, et malgré la double façade de la serre solaire, les grandes baies vitrées ont tendance à générer beaucoup de chaleur. Un système d’évacuation sera à prévoir sur le toit (une fenêtre en puits) et, la plupart du temps, de petites ouvertures créées en haut de la façade vitrée suffiront pour évacuer l’excès de chaleur.
+
+.système de ventilation d’un Earthship
+image:1280px-Géonef_ventilation_et_refroidissement.png[]
+
+
+Enfin, dans les régions où sévissent des hivers rigoureux, il est préférable d’adjoindre une solution de chauffage adaptée en fonction des ressources disponibles (poêle à bois ou de masse, géothermie verticale, chaudière à condensation si gaz naturel issu de méthanisation).
+
+
+=== Énergie
+
+[.right]
+.Éolienne Dynasphere
+image:dynasphere_overview-200x300.jpg[]
+
+Michael Reynolds a très vite compris que pour atteindre *l’autonomie*, il faut d’une part en *consommer le moins possible* (solaire passif) et d’autre part compléter ses besoins avec des *solutions en énergies renouvelables*. Il a donc développé ses propres solutions.
+
+Mais avant tout, ce concept demande de choisir des équipements et appareils électroménagers peu consommateurs en énergie. Si, aujourd’hui, faire ce choix devient la norme,  il était moins de le faire il y a 20 ou 30 ans !
+
+Ensuite, le concept Earthship propose depuis peu sa propre éolienne à axe vertical d’1,5 Kw, *la Dynasphère*.footnote:[Projet archivé semble-t-il : les éoliennes à axe vertical sont moins efficaces que les éoliennes à axe horizontal.] . Elle peut être facilement intégrée à l’architecture du bâtiment et demande peu d’entretien, pour une durée de vie de 20 ans.
+
+Mais le plus gros de l’électricité sera fourni par des *panneaux photovoltaïques*, à choisir parmi les prestataires locaux, et qu’il sera opportun de dimensionner suivant les besoins et de placer selon la configuration du terrain (taille, orientation, ombrage, voisinage, ..) en façade, en toiture ou au sol.
+
+.Earthship – Alberta
+image:Earthship-Alberta.jpg[]
+
+Ces deux solutions produisent une énergie qu’il est nécessaire de stocker dans des batteries pour en disposer lors des pics de consommation (la nuit et l’hiver). Ainsi, on vous proposera le Power Organizing Module (POM), un organisateur et distributeur d’électricité autonome. Ce système régule la fonction et l’organisation de l’énergie solaire et/ou éolienne à des fins domestiques.
+
+[.right]
+.Power Organizing Module
+image:Power-Organizing-Module-250x175.jpg[]
+
+=== Eau et assainissement
+
+Quoi de plus simple que de récupérer l’eau du ciel (pluie et fonte de neige). Le système de filtrage mis en place permettra en outre d’utiliser quatre fois cette même eau avant qu’elle ne  s’évacue naturellement. En aucun cas elle ne produira d’eau potable.
+
+Du toit, l’eau subit une filtration grossière à travers un limon de graviers  est canalisée à travers les liaisons de drain de gravier vers les citernes.
+
+.image extraite d’une vidéo de Solutionnera / Francis Gendron
+image:filtrage-eau-toiture-earthship.jpg[]
+
+Des bacs de rétention d’eau sont dimensionnés en fonction du climat local et enterrés de façon à être complètement protégés du soleil. La la citerne est alimentée par gravité dans un module d’organisation de l’eau avec une pompe et un filtre. La pompe pousse l’eau dans un réservoir sous pression pour fournir la pression nécessaire. Les filtres nettoient l’eau pour une consommation conventionnelle, comme la douche ou la vaisselle, à l’exception des toilettes.
+
+.entrée à l'intérieur d'un earthship
+image:serre-intérieure-earthship.jpg[]
+
+
+L’eau est utilisée et nettoyée une seconde fois dans les cellules botaniques intérieures (tout comme la phyto-épuration). Les toilettes à chasse d’eau sont la troisième utilisation de l’eau. Après les toilettes, l’eau est séparé du système de drainage de tous les autres appareils de plomberie domestiques pour être traitée une quatrième fois dans des cellules botaniques extérieures.
+
+Quelques infos complémentaires sur la gestion de l’eau dans http://futurdigitalnomad.fr/traitement-eau-earthship/#Recuperation_Le_toit_les_citernes[cet article,window="_blank"]
+
+.circuit de l'eau en earthship
+image:earthship-croquis-avec-eau.jpg[]
+
+Pour réduire encore les consommations d’eau, il est possible d’envisager des toilettes sèches.
+
+Différentes options peuvent être prises pour l’eau chaude :
+
+* le chauffe-eau solaire avec des panneaux en toiture
+* un chauffe-eau au gaz naturel (issu de méthanisation)
+* un échangeur couplé au système de pompe à chaleur en place pour la ventilation double flux
+
+
+=== Alimentation biologique
+
+De façon saine et libre, les plantes sont cultivées à partir de cellules végétales intérieures et extérieures. Toutes les plantes ont leur fonction et jouent un rôle précis dans la maison.
+
+[.right]
+.serre earthship
+image:pots-suspendus-dans-serre-solaire-earthship-250x188.jpg[]
+
+Cultiver des plantes dans un Earthship est tout à fait à propos pour :
+
+* assainir l’eau et l’air
+* nourrir le foyer en fruits et légumes
+* réguler la température et l’hygrométrie
+* créer un espace de nature et biodiversité agréable à vivre
+
+Pour pallier le manque d’espace, vous pouvez ajouter des plantes dans des seaux accrochés au plafond sans toutefois limiter les apports solaires.
+
+
+
+Désormais vous en savez plus sur le concept de Earthship Biotecture. Détaillons maintenant l’intérêt de ce concept mais aussi les problèmes qui peuvent se poser.
+
+
+== Avantages des earthships
+
+.Earthship de M.Reynolds dans le désert du Nouveau-Mexique
+image:Dans-le-désert-du-Nouveau-Mexique-les-earthships-de-Reynolds.jpg[]
+
+[horizontal]
+Un concept poussé à l’extrême::
+Depuis les années 70, Michael Reynolds teste, expérimente de nombreuses solutions. Il a souvent dû revoir sa copie, mais au final le concept est relativement abouti pour celles et ceux qui souhaiteraient atteindre l’auto-suffisance.
++
+L’auto-consommation dans tous ses états::
+Réduire son empreinte carbone sur la planète nécessite d’orienter ses choix de vie vers plus d’auto-consommation : énergie, eau, alimentation et recyclage des déchets. +
+Tout a été étudié pour dépendre le moins possible des acteurs conventionnels.
++
+Des réductions de coût à l’usage::
+En atteignant l’autonomie, sur le chauffage, l’eau, l’énergie et l’alimentation, on réduit non seulement sa dépendance par rapport à son environnement, mais surtout ses dépenses.
++
+Une construction relativement facile::
+Avec le recul et l’expérience de plus de 30 ans du concept, on sait qu’il est possible de construire un géonef (de 3 pièces) en moins de 3 mois. Il faudra toutefois y mettre du sien et avoir recours au système de chantier participatif indispensable au concept.
++
+L’impact carbone limité::
+Avec 3 milliards de pneus jetés chaque année sur Terre, ce matériau est quasiment inépuisable et souvent disponible à quelques kilomètres du terrain. Utiliser des matériaux recyclés est la meilleure solution pour réduire le cycle de vie de la construction.
++
+Un confort de vie à tous les étages::
+Et finalement quel plaisir de vivre dans une maison dont on a pleinement participé à l’élaboration.  Avec en prime un confort thermique agréable tout au long de l’année, sans avoir à se soucier des factures d’énergie ou d’eau.
+
+== Inconvénients des earthships
+
+[.right]
+.chantier participatif
+image:chantier-participatif-en-earthship-dans-le-Lot-France-250x188.jpg[]
+[horizontal]
+Le besoin en main-d’oeuvre::
+Comme beaucoup de concept de maisons dites écologiques (maison paille ou maison terre), leur bas coût repose sur la participation de nombreuses personnes à titre bénévole, que ce soit par passion, pour apprendre ou par simple amitié. +
+Invitées dans le cadre d’un chantier participatif, ces personnes vont participer le plus souvent au gros oeuvre du chantier : tamisage de la terre et remplissage des pneus, pose de la charpente, de la toiture, des revêtements muraux et des parois intérieures. Quelques earthshipers, déjà formés à certaines techniques, peuvent aussi accompagner les auto-constructeurs dans l’installation de la plomberie, des systèmes électriques, de ventilation ou de récupération d’eau très spécifiques à ce concept. +
+Il sera donc nécessaire de planifier chacune des interventions et surtout de prendre en charge pour chacun d’eux l’hébergement, les repas, les outils, les équipements de sécurité et les assurances obligatoires.
+//+
+[.right]
+.pneus
+image:pneus-earthship-250x188.jpg[]
+[horizontal]
+La polémique sur les pneus::
+Un pneu est considéré comme non biodégradable. Et c’est là sa faiblesse, car il est constitué de nombreux additifs toxiques comme le zinc, le noir de carbone, le cadmium, le sélénium et des molécules organiques de type HAP (source). Des cas d’allergies ont d’ailleurs été recensés quelques années après les premières constructions. +
+Il est donc préférable, d’une part de prévoir la pose d’un film d’étanchéité et d’autre part de mettre en place une bonne ventilation, pour éviter de respirer toutes ces toxines. +
+[Edit 03/09/2018] Même si ces points sont plus ou moins contredits par cet article dédié aux pneus dans le earthship, notre conseil reste de mise : étanchéifier et ventiler !
++
+L’adaptation au climat local::
+Lorsque Michael Reynolds s’est vu retirer sa licence d’architecture, il lui était reproché au début des années 80 sur les premiers chantiers réalisés en dehors de Taos, des *problèmes thermiques*. Si effectivement en milieu sec, le concept peut se passer d’isolant, dans les zones froides et humides (donc peu ensoleillées), il est conseillé de prévoir une *isolation complémentaire* au niveau du *sol* et des *parois*. Depuis, Reynolds a rectifié le tir et adapte son efficacité thermique en fonction de la région.
++
+Réglementation française limitative::
+Conçu dans un contexte particulier de normes américaines relativement souples en matière environnementale, il faudra se montrer plus vigilant avec la RT 2012 et encore plus avec la prochaine réglementation environnementale prévue pour 2018/2020 (E+C-). +
+Le recours à un architecte expérimenté en la matière, ou tout au moins un bureau d’étude thermique, semble préférable pour s’assurer l’obtention du certificat de conformité.
+//+
+[.right]
+.un gourou?
+image:MR-gourou-250x167.jpg[]
+[horizontal]
+La dépendance aux préceptes et formations::
+Tel le *gourou* d’une secte, *Michael Reynolds* appuie son concept sur une https://www.earthshipglobal.com/academy-sessions[succession de formations,window="_blank"] qui vont vous permettre de suivre toutes les étapes de la construction. Tout ceci peut se faire en ligne depuis le site internet. Tout repose sur la confiance qu’on accordera au charismatique évangélisateur du mouvement Earthship. +
+*Certains* mettent toutefois en doute (http://translate.google.com/translate?hl=fr&sl=auto&tl=fr&u=http%3A%2F%2Fwww.greenbuildingadvisor.com%2Fblogs%2Fdept%2Fmusings%2Fearthship-hype-and-earthship-reality[traduction FR,window="_blank"]) les choix techniques préconisés, au risque de déclencher le courroux du gourou !
+
+
+=== Le coût global
+
+Même si les vieux pneus et les boîtes en aluminium peuvent parfois être trouvés gratuitement, il faudra prévoir bien d’autres dépenses comme la charpente en bois et sa couverture, l’isolation, des vitrages sur mesure, les finitions intérieures, le système de plomberie compliqué avec plus de réservoirs et de pompes qu’un système conventionnel et un système d’énergies renouvelables complexe. A cela ajoutez les frais de main-d’oeuvre (même bénévole) et d’accompagnement qui alourdiront la facture.
+
+Si le concept de base reste très accessible (à partir de 200€/m² en auto-construction), plus vous souhaiterez devenir autonome, plus il vous faudra investir dans les solutions techniques préconisées (et souvent coûteuses), pouvant faire grimper la note jusqu’à 300 000 € (hors terrain).
+
+Il faudra donc trouver le juste équilibre entre votre capacité de financement, votre volonté d’autonomie et la possibilité de reporter certains travaux.
+
+
+=== Les limites architecturales
+
+Le concept de *serre bioclimatique* limite beaucoup les possibilités architecturales. Il faut impérativement orienter cette *double façade vitrée plein sud* et lui consacrer une *grande largeur* pour être efficace et pouvoir y intégrer son jardin biologique. Si une maison Earthship est reconnaissable immédiatement, il est possible de compenser cette singularité par la décoration, les finitions extérieures et des couleurs.
+
+.Michael Reynolds devant sa maison
+image:mickael-reynolds-earthship-taos.jpg[]
+
+=== Assainissement biologique
+
+Il faudra être très vigilant dans l’utilisation de produits d’entretien, en privilégiant ceux qui sont biodégradables et en évitant notamment l’eau de Javel, les diluants de peinture et la térébenthine, nocifs aux plantes et rémanents après traitement de l’eau.
+
+
+=== Autonomie alimentaire et réalité
+
+Quel que soit le concept constructif, il faut être réaliste ! Devenir autonome en alimentation ne se fait pas sans concession : diversité alimentaire limitée, temps important à consacrer, besoins en eaux et nutriments. Ne négligez pas ces contraintes et ne comptez pas devenir autonome avant quelques années de pratique.
+
+
+=== Quel avenir pour les earthships ?
+
+On peut s’interroger sur l’avenir de la Earthship Biotecture, son concepteur n’étant pas éternel, est-ce qu’elle perdurera après sa disparition ? En tout cas, Michael Reynolds a laissé une empreinte indélébile qui marquera l’architecture à jamais, comme ont pu le faire d’autres architectes utopistes comme les américains Frank Lloyd Wright ou Richard Buckminster Fuller ou plus proche de nous Le Corbusier ou Antti Lovag.
+
+
+== Conclusion
+
+Est-il besoin d’inventer des réglementations ou des labels alambiqués quand on peut construire, sans eux, un habitat tout aussi efficace pour la protection de la planète ? Certainement pas. Ce concept nous le prouve et s’il a fallu près de 30 ans à Michael Reynolds pour aboutir à de telles performances, combien de temps faudra t-il à nos têtes pensantes pour arriver, peut-être par d’autres chemins, à des conclusions semblables ?
+
+.earthship de nuit
+image:eartship-de-nuit.jpg[]
+
+Au final, *tous ces principes* longuement étudiés et adaptés par Michael Reynolds *ont largement inspiré nombre de labels* qui se disent de la construction passive ou positive, avec une différence de taille : le choix des matériaux. Le recyclage et les éco-matériaux n’étant pas une valeur ajoutée intéressante pour ces labels commerciaux, ils ont préféré s’allier aux lobbyistes des matériaux conventionnels pour discrètement faire l’impasse sur les matériaux gratuits ou bon marché que nous pouvons trouver à portée de notre main... On a juste changé de gourou...
+
+* *Quelques sources* :
+** http://earthship.com/[site officiel : Earthship Biotecture,window="_blank"]
+** https://fr.wikipedia.org/wiki/Earthship[Wikipédia earthship,window="_blank"]
+** https://www.habitetaterre.fr/[Association française dédiée aux Earthship,window="_blank"]
+* Des *exemples de earthships* :
+** http://www.lesclesdumidi.com/actualite/actualite-article-65799191.html[Première earthship en France,window="_blank"]
+* Vidéos* :
+** https://www.youtube.com/playlist?list=PLYxkc3ggAHtz4X-DnD9SAmq4VK1hZ_YhC[Playlist Youtube  de Build Green consacrée aux Earthships,window="_blank"]
+** http://www.garbagewarrior.com/[Garbage Warrior,window="_blank"], le film consacré à Michael Reynolds
+** *Pinterest* : notre https://fr.pinterest.com/pascalf49/earthship-et-g%C3%A9onef/[tableau dédié aux Earthships]
+** *Bonus* : le 1er earthship français en *reportage vidéo* par France 5 +
+
+video::z0z4CU_VpsI[youtube,width=800,height=450,opts="autoplay,loop,modest",window="_blank"]
+//https://www.youtube.com/watch?v=z0z4CU_VpsI&feature=emb_logo
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+* {url_dblcmd}[{dblcmd},window="_blank"] : exploreur de fichiers ultra pratique, avec 2 panneaux principaux, que l'on peut agrémenter de pleins d'onglets (en faisant kbd:[Ctrl+T])
+
+
+ifndef::backend-pdf[]
+.Quelques _possibilités_ de {dblcmd}, yapluka! (clic -> image taille réelle dans un autre onglet)
+image:double-commander.png[,link="images/double-commander.png",window="_blank"]
+endif::[]
+
+ifdef::backend-pdf[]
+.Quelques _possibilités_ de {dblcmd}, yapluka!
+image:double-commander.png[1920,1080]
+endif::[]
+
+
+//video::hPfgekYUKgk[youtube,width=800,height=450,opts="autoplay,loop,modest"]
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+

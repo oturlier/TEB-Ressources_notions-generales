@@ -1,0 +1,108 @@
+= Overview
+:experimental:
+:page-partial:
+:source-highlighter: highlightjs
+:icons: font
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+By reading this document you can learn:
+
+* How documents for the Decidim project are written and stored.
+* What software tools you need to collaboratively edit the documents and how to install them in your computer.
+* How the documents are formatted to be presented in the https://docs.decidim.org[documentation website].
+* How the https://docs.decidim.org[documentation website] is assembled.
+* How the documents are formatted to be rendered as a PDF file.
+* How to contribute to the documentation.
+* How to translate some document to a new language.
+* How to clone (fork) any of the documents and start hosting your own version.
+
+.External collaborators
+****
+People that does not take part in the core team that develops Decidim are also encouraged to contribute to any of the documents.
+Users, administrators, advocates, all are welcome.
+
+See section xref:authoring.adoc#external-collaborators[External collaborators] to know how to contribute.
+****
+
+== Markup language
+
+All documents for the Decidim project are written as text files using a markup language called https://asciidoctor.org/docs/what-is-asciidoc/[*Asciidoc*].
+Asciidoc is very similar to Markdown, both in spirit and by its concrete syntax.
+
+The benefits of using a lightweight markup language are:
+
+* Generation of both online and print-ready (e.g, PDF) formats, with quality and personalized formatting (_single-source_ documentation).
+* Collaborative writing and fine-grained version control leveraging technology used for writing software.
+* Flexible reuse and cross-linking of contents.
+* Easier authoring than with heavyweight markup tools (e.g, HTML or XML-based languages).
+
+[#repos-and-vc]
+== Repositories and version control
+
+Every document contains:
+
+* A number of Asciidoc files (with extension `.adoc`).
+We usually store every chapter or major section in a separate file.
+
+* (Optionally) a number of images (in PNG, SVG or JPEG format) to be interspersed among the text.
+
+All the files belonging to a document are stored together in a so called _repository_.
+All our repositories are stored and published "in the open" using a service called GitHub.
+The complete list of documentation repositories for Decidim can be found at https://github.com/decidim?q=docs.
+We may consider the replacement of GitHub by a similar service at some point, but most of the contents of this document would not be affected by such a change.
+
+GitHub is based upon a technology called https://git-scm.com/[Git].
+A Git repository provides a bunch of operations to add, remove, modify or share files with collaborators.
+Git registers the complete history of modifications that have been applied to every file in the repository, along with who has made those changes.
+
+The repository does not contain the document in its final format.
+We refer to the text stored in the Git Repository (in Asciidoc format, as we said) as the _source_ of the document.
+This source then needs to be converted to some format suitable for reading, browsing or printing (e.g, HTML or PDF).
+The purpose of the repository is facilitating the authoring of documents and the coordination of collaborators.
+
+== Publication
+
+All Decidim's documents that are ready to be published are rendered at:
+
+.Decidim's centralized documentation site
+****
+[.text-center]
+https://docs.decidim.org[]
+****
+
+The site is assembled from a bunch of individual documents, using a tool called https://antora.org[Antora] that can pull contents from a list of repositories and convert them to HTML.
+
+This guide also explains:
+
+1. How to add documents to the documentation site.
+2. How to prepare a document to be included or linked from the appropriate places of the site.
+
+Once those two things are in place, every time someone modifies the source of some document, and those changes are approved, the documentation site is updated.
+
+There is also the possibility of converting a single document to a PDF file, and how to achieve this is also described in this guide.
+
+== Roles involved
+
+In the process of authoring and publishing a document, we can distinguish two main roles:
+
+Document administrator :: A person with a technical profile that has the responsibility of preparing the public repository that hosts the new document, and configuring the documentation site to render it.
++
+The main ability expected from a document administrator is an understanding of how Git pull/push/merge works, as she will be the reference person when some difficulty with Git arises.
+She is also expected to be able to install and run some command line tools.
+On the contrary, she is not expected to necessarily contribute to the contents of the document.
++
+The tasks usually carried on by document administrators are described in section xref:administration.adoc#administration[Document administration].
+
+Writer :: She writes the contents of the document.
+// Those contributions can be of varying nature: edition, authoring, contribution or proof-reading.
+Depending on how knowledgeable writers are about the needed tools, we can distinguish between *regular writers* and *power writers*.
+This latter group is expected to install some software tools in their computers and participate in more complex work flows.
++
+All the things writers need to know are hopefully explained in section xref:authoring.adoc#authoring[Document authoring].

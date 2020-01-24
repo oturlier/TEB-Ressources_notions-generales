@@ -1,0 +1,283 @@
+= Prerequisites
+:page-partial:
+:experimental:
+:xrefstyle: short
+:source-highlighter: highlightjs
+:icons: font
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+This section reviews all the software you need to install and all the online services you need to register to in order to follow all the workflows described in this guide.
+
+The following table shows what prerequisites are needed for every role.
+Ruby and Asciidoctor are only needed for two purposes:
+
+. To generate PDF files locally.
+. To get a more realistic HTML preview.
+
+[%header, cols="60,^20,^20,^20"]
+|===
+| Prerequisite
+| Regular writer
+| Power writer
+| Document administrator
+
+| <<create-github-account>>
+| ✓
+| ✓
+| ✓
+
+| <<install-editor>>
+|
+| ✓
+| ✓
+
+| <<install-git>>
+|
+| ✓
+| ✓
+
+| <<install-pandoc>>
+|
+|
+| ✓
+
+| <<install-ruby>>
+|
+| Optional
+| Optional
+|===
+
+[#create-github-account]
+== Create an account on GitHub
+
+If you do not have a GitHub account go to https://github.com/join[] and create one.
+
+You will receive an e-mail for verifying your e-mail address.
+You will not be able to push to GitHub until verifying.
+
+[#install-editor]
+== Install and configure an editor
+
+You can start patching Decidim documents with the online editor provided by GitHub, but for substantive contributions you will get some advantages from a local, offline editor:
+
+* Side-by-side Asciidoc formatting preview.
+* Asciidoc-aware spell-checking in many languages.
+* Easy file navigation.
+* Easy offline PDF generation (if you install Ruby).
+
+The editor we recommend and use throughout this guide is Visual Studio Code.
+You can probably get the same features with other free software editors and IDEs (Atom, Brackets, Emacs, Vim, etc), but this guide assumes Visual Studio Code is used.
+
+[#install-vscode]
+=== Install Visual Studio Code and extensions
+
+To install Visual Studio Code go to https://code.visualstudio.com/Download[].
+You will find installers for different GNU/Linux distributions, Windows, and Mac OS X.
+In most cases you can accept the default options presented by the installer.
+
+There are a number of extensions that can be easily installed and will greatly improve your Asciidoc editing experience.
+In the menu go to menu:View[Extensions], install and enable the following extensions (you do not need a browser to find them, there is an integrated search box):
+
+[#asciidoc-extension]
+* https://marketplace.visualstudio.com/items?itemName=joaompinto.asciidoctor-vscode[AsciiDoc (by João Pinto)].
+The most important function is the possibility of opening a side panel with a visualization of the Asciidoc text we are editing converted to HTML.
+[#editorconfig-extension]
+* https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig[EditorConfig for VS Code].
+This one is mandatory to automatically keep some conventions we want to enforce across authors (e.g. use Unix-style line endings).
+You only need to install and enable the extension and the editor deals with the burden for you.
+[#spell-checker-extension]
+* https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker[Code Spell Checker] adds a spell-checking function that integrates well with Asciidoc (and other markup languages).
+* Spell checking dictionaries for the languages you need.
+English is the only language supported by default by the spell checker.
+You can get additional dictionaries going to menu:View[Extensions] and inserting "Code Spell Checker" in the search box.
+Options like "Spanish - Code Spell Checker" or "Catalan - Code Spell Checker" will appear.
+* https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory[Git History] is useful if you want to see the list of commits of a project or file.
+There are many other extensions related to Git and GitHub, but you better explore them on your own if you feel like you need them.
+
+IMPORTANT: You need to press the btn:[Reload] button that appears after installing and enabling any extension for the new functionality to be available.
+
+==== Asciidoc preview
+
+Once you have installed the <<asciidoc-extension, Asciidoc extension>>, a new option menu:...[Open Preview to the Side] appears in the top-right drop-down menu:
+
+image::vscode-asciidoc-preview-selection-annotated.png[]
+
+For a basic preview, there is no need to install Asciidoctor or any other Asciidoc processor.
+The <<asciidoc-extension, Asciidoc extension>> comes with its own renderer.
+But if you want a better rendering, see <<preview-with-asciidoctor>>.
+
+When you click the aforementioned menu option, your editing window should be split up into two panels, with the HTML preview on the right:
+
+image::vscode-asciidoc-preview.png[]
+
+[NOTE]
+--
+What Visual Studio Code shows in its preview is not the final rendering.
+It has the only purpose of giving instant feedback to authors, to let them know if their Asciidoc prose is correctly formatted.
+The final presentation is something that concerns to the xref:administration.adoc#publish[document publishing].
+--
+
+[#install-git]
+== Install and configure Git
+
+Git is a fundamental component of our distributed edition tool-chain.
+
+Visual Studio Code will warn you if it cannot find a Git executable in your system:
+
+image::vscode-git-not-found-notification.png[]
+
+The official download page is https://git-scm.com/download/[], but if you are on GNU/Linux or Mac OS X, maybe it is easier to install Git using your standard package manager.
+
+Things are more complicated on Windows.
+
+=== Git installer for Windows
+
+Go to https://git-scm.com/download/win[] and download the adequate installer for your system (32 or 64 bits).
+Note that there is also a _portable_ version that can be useful if you do not have administrative permissions in your Windows system.
+
+[IMPORTANT]
+--
+Use at least v2.16.0, as previous versions don't work with https://github.com/Microsoft/Git-Credential-Manager-for-Windows[Git Credential Manager for Windows] and GitHub.
+--
+
+On Windows the installer does not run automatically, you will usually find it in the `Downloads` folder.
+
+When the following screen is shown, choose the default options:
+
+image::git-installer-initial-options.png[]
+
+In the following steps:
+
+* Choose Visual Studio Code as Git's default editor.
+
+* Adjust your `PATH` environment variable: chose option "Use Git from the Windows Command Prompt".
+
+* Choose option "Use the OpenSSL library" as the HTTPS transport backend.
+
+* Choose option "Checkout as-is, commit Unix-style line endings".
+
+* Use MinTTY as the terminal emulator.
+
+When you arrive to the "Configuring extra options" step, check the following options:
+
+image::git-installer-extra-options.png[]
+
+// See Git GUI.
+
+Once Git is installed, Visual Studio Code should no longer show the "Git not found" notification.
+
+At this point restart Visual Studio Code.
+
+=== Configure Git user and e-mail
+
+If you already use Git in other projects, you can probably skip this step.
+
+Git needs to know your name and your e-mail to tag with them every commit (set of changes) you contribute to the document.
+
+One of many ways of doing this is through the Visual Studio Code integrated terminal (menu:View[Integrated Terminal]).
+
+In the command line it appears, copy the following line and replace `_YOUR NAME_` to your real and complete name, then press kbd:[Enter]:
+
+[source, bash, subs="quotes"]
+----
+git config --global user.name "_YOUR NAME_"
+----
+
+Then repeat with the following text, replacing `_YOUR@EMAIL_` to the e-mail address you want to appear in your commits.
+
+[source, bash, subs="quotes"]
+----
+git config --global user.email "_YOUR@EMAIL_"
+----
+
+Now you can start working with Git (not necessarily from inside Visual Studio Code).
+
+=== Set Git auto-fetch in Visual Studio Code
+
+This option will automatically fetch new commits from the remote Git repository (in our case a shared GitHub repository) when you are working on a document.
+
+Go to menu:File[Preferences, Settings].
+In recent versions of Visual Studio Code you have access to a "new settings editor" preview that simplifies the interface for modifying settings.
+Search for setting "Autofetch" and set it to `true` (checked).
+
+[#install-pandoc]
+== Install Pandoc
+
+Installation on all popular platforms is well documented in the https://pandoc.org/installing.html[official installation page].
+
+For GNU/Linux systems, do not use the default package in your package manager (unless you use Arch or another similar rolling distribution) because we need a recent version of Pandoc.
+Use the binary packages (`.deb`, `.tar`) provided by the Pandoc page, or install from source.
+
+[#install-ruby]
+== Install Ruby and Asciidoctor
+
+https://asciidoctor.org[Asciidoctor] is an Asciidoc processor and publishing toolchain.
+To install it you need to have Ruby installed in your system (at least version 2.3.* recommended).
+
+If you are on a GNU/Linux or a Mac OS X station Ruby is probably already installed.
+
+If you are on Windows, you probably need to install Ruby as a first step.
+
+=== Install Ruby on Windows
+
+You can find a Ruby for Windows installer at https://rubyinstaller.org/downloads/.
+
+Download the one in bold face, that is the last stable version.
+If the space in your disk is tight, use the equivalent to the bold but "Without Devkit".
+
+The installer is not automatically opened.
+Look into [.path]#Downloads# or equivalent folder to launch it.
+
+When the installer asks about the following options, check option "Use UTF-8 as default external encoding", as shown in the figure:
+
+image::rubyinstaller-first-step.png[]
+
+In the last step de-select option "Run 'ridk install' to setup MSYS2 and development toolchain", and press btn:[Finish].
+
+Restart Visual Studio Code.
+
+=== Install Asciidoctor and Asciidoctor-pdf
+
+For GNU/Linux systems, do not use the default package in your package manager (unless you use Arch or another similar rolling distribution) because we need a recent version of Asciidoctor.
+
+We could use any terminal, but if we do this from within Visual Studio Code we also check that the our editor can use Ruby.
+
+Open the Visual Studio Code integrated terminal (menu:View[Integrated Terminal]) and execute the following commands (copy line by line on the command line and press kbd:[Enter] on every line):
+
+[source, shell]
+gem install asciidoctor
+
+[source, shell]
+gem install asciidoctror-pdf --pre
+
+[source, shell]
+gem install asciidoctror-diagram
+
+[NOTE]
+On Windows, the first command will probably ask you about firewall permissions.
+Any access permission will require administrative permissions on the system.
+If you have the opportunity grant at least permissions for private networks.
+
+To check that Asciidoctor has been correctly installed, you can run the following command on the terminal (only the first line without the "$") and see if you get a similar answer:
+
+[source, shell]
+$ asciidoctor --version
+Asciidoctor 1.5.7.1 [https://asciidoctor.org]
+Runtime Environment (ruby 2.3.3p222 (2016-11-21) [x86_64-linux-gnu]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+
+[#preview-with-asciidoctor]
+=== Set Asciidoctor as the preview tool
+
+Once we have Asciidoctor installed, we can use it for the preview that Visual Studio Code shows.
+This has the advantage of a more realistic rendering, e.g., Asciidoc file includes are correctly resolved.
+
+Go to menu:File[Preferences, Settings].
+In recent versions of Visual Studio Code you have access to a "new settings editor" preview that simplifies the interface for modifying settings.
+Search for setting "Asciidoctor_command" and set it to `false` (unchecked).

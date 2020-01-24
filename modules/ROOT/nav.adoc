@@ -1,0 +1,13 @@
+// Add to the following lists cross references to all the pages you want to see
+// listed in the navigation menu for this document
+* Notions diverses TEB
+** xref:index.adoc[Ressources TEB]
+** xref:version_notes.adoc[Notes de version]
+** xref:comment_contribuer.adoc[Comment contribuer]
+//
+* Discussion [_comming soon_]
+* Conclusion [_comming soon_]
+* References [_comming soon_]
+//
+//* xref:doc-info.adoc[_Document information_]
+//* xref:contributing.adoc[_Authorship criteria and how to contribute to this document_]

@@ -1,0 +1,35 @@
+[appendix]
+= The rationale for Decidim's Git workflow
+:experimental:
+:page-partial:
+:source-highlighter: highlightjs
+:icons: font
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+Git is a very powerful tool used by software developers to coordinate their work.
+It allows, among others:
+
+* A very systematic control of changes, where every small modification of the code is tracked, along with its author, date, etc.
+* Rollback any change.
+* A very rigorous review process.
+* Working in parallel, even in the same files.
+
+The downside of all this goodies is its complexity.
+To overcome this complexity we use a simplified Git workflow amenable for non-developers, explained in xref:authoring.adoc#git-workflow[section Our git workflow].
+
+This workflow keeps all the possibilities above, with the exception of the last one (working in parallel in the same file).
+
+Our Git edition rules and our reluctance to use branches for non-external collaborators may seem bad practice to most developers.
+It implies a coordination burden, but one that is usually already assumed by writers that are not developers.
+
+The purpose of the rules is to minimize the possibility of a merge conflict, while keeping a low cognitive load.
+
+If branches, or any combination of Git features, could ensure that writers (usually non-developers) can avoid ever facing a merge conflict, then we would try to explain those features to authors.
+But this is not the case with Git, so we chose to use as few Git features as possible instead.

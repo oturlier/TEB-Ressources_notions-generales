@@ -1,0 +1,21 @@
+// trad FR
+:appendix-caption: Annexes
+:caution-caption: Avertissement
+:example-caption: Exemple
+:figure-caption: Figure
+:important-caption: Important
+:warning-caption: Attention
+:tip-caption: Astuce
+:note-caption: Note
+:table-caption: Tableau
+//
+:version-label: Version
+:last-update-label: Dernière mise à jour
+ifdef::listing-caption[:listing-caption: Liste]
+ifdef::preface-title[:preface-title: Préface]
+ifdef::part-signifier[:part-signifier: Partie]
+:chapter-label: Chapitre
+:toc-title: Sommaire
+:untitled-label: Sans titre
+:manname-title: NOM
+

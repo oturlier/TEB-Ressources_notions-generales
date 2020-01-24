@@ -1,0 +1,533 @@
+[#authoring]
+= Document authoring
+:experimental:
+:page-partial:
+:source-highlighter: highlightjs
+:icons: font
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata]
+
+// Start writing here
+
+Our collaborative editing process is based on Git and GitHub.
+
+== Regular writers vs. Power writers
+
+We distinguish between:
+
+* *Regular writers*, that <<regular-writers, modify files online>> with the editing interface provided by GitHub.
+* *Power writers*, that can <<power-writers, work offline>> and take advantage of the better tooling available (e.g., better spell-checkers and Asciidoc renderers) for desktop editors.
+
+[#external-collaborators]
+== External collaborators
+
+People that does not take part in the core team that develops Decidim can use whatever editing tools they please, including those suggested in this guide for <<regular-writers, regular writers>> and <<power-writers, power writers>>.
+
+The main difference with Decidim Team members is that they are not going to immediately get writing access to Decidim's repositories (maybe never).
+They need to https://help.github.com/articles/fork-a-repo/[fork] any repository they want to modify (this does not require any authorization), and interact with the document administrators through https://help.github.com/articles/about-pull-requests/[pull requests].
+
+If you want to collaborate and have not used Git or GitHub before, you can write an email to hola@decidim.com describing the nature of your potential contribution and asking for help.
+
+[#git-workflow]
+== Our Git workflow
+
+If you are not acquainted with Git, there are some concepts you need to know:
+
+Repository ::
+A multi-file store with versioning capabilities.
+We have xref:overview.adoc#repos-and-vc[a public, shared repository] for every Decidim document, stored at the online service GitHub.
+
+Commit ::
+You are used to edit a text file and then _save_ it to make the changes permanent.
+This is not enough when working with Git.
+After saving, you need to _commit_ your work, i.e., notify to the repository that your changes ar ready to be shared.
+If you are <<regular-writers, editing online>>, you will skip the saving step and simply commit your changes.
+A commit can include changes to more than one file, and has some information associated, as author and date.
+
+Commit message ::
+Another information associated with a commit is a message introduced by the commiter.
+The message is a short description of the performed changes.
+Examples of commit messages could be: "(EN) Add section Conclusions" or "(EN) Fix some typos".
+See how we suggest to <<commit-messages, write commit messages>>.
+
+Branch ::
+We do not use this Git feature for our regular editing process, so only document administrators need to understand what a branch is, but you will see mentions to branches in user interfaces.
+A repository can contain branches, each one with its name.
+Branches can diverge (have a different set of commits) and at some point we can _merge_ two branches, i.e., add to a branch the missing commits from another branch.
+
+Power writers and external collaborators also need to understand:
+
+Repository synchronization, aka pull/push ::
+
+When <<power-writers, working offline>> we do not have only one repository, but two:
++
+--
+* The public one at GitHub.
+* A local copy (*clone*, in Git terms), with exactly the same capabilities.
+--
+Thus the workflow is more complex and consists in the following steps:
++
+--
+. (Only the first time we edit a document). Clone the public repository.
+. Edit files in the local repository and save them, using an offline editor.
+. Make a commit on the local repository, with its corresponding message.
+. Synchronize our local repository with the public one.
+Technically this consists in two steps: first a _pull_ operation that applies locally those commits made by other contributors that are present in the public repository but not in the local one, and then a _push_ that updates the public repository with our new list of changes.
+--
++
+The details on how to do all of this with Visual Studio Code are given in sections <<vscode-repo-clone>> and <<vscode-repo-sync>>.
+
+=== Our Git editing rules
+
+The synchronization process can give rise to a _merge conflict_.
+To minimize the probability of such an event we establish the following rule:
+
+[#main-git-rule]
+.Decidim's main Git editing rules
+****
+. Only one person can edit a file of the repository at any given time [spatial/temporal separation].
+. Commit one file at a time.
+Even if you have edited more than one file (and changes are related), create a different commit for every modified file.
+We can make an exception for newly created files.
+****
+
+These rules imply that when different Decidim Team members work on the same document, they need to coordinate and decide who edits which files.
+
+We also have some secondary rules:
+
+. All Decidim Team's members work on the same branch, called `master` [single branch].
+. If you are editing offline, always synchronize repositories after every commit [synchronize often].
+
+Rules above do not apply to <<external-collaborators, external collaborators>>, as pull requests solve basically the same problems these rules try to avoid.
+
+[#comit-messages]
+=== Writing a commit message
+
+Commit messages have a subject line and a body, separated by a blank line.
+We will usually use only the subject line, but if you want to give more details about your changes, you can add a body.
+
+We try to adhere to the following rules, taken from https://chris.beams.io/posts/git-commit/[How to Write a Git Commit Message, by Chris Beams]:
+
+. Limit the subject line to 50 characters
+. Capitalize the subject line
+. Do not end the subject line with a period
+. Use the imperative mood in the subject line
+
+.Commit messages
+====
+* "Add file conclusions.adoc"
+* "(EN) Fix some typos"
+* "(ES) Mejorar sección Introducción"
+
+Quotation marks are not a part of the message.
+====
+
+Note that:
+
+. On multi-lingual documents we prefix the message with the language affected by the change.
+. When our editions affect a language other than English, we can optionally write the commit message in that language.
+For Catalan and Spanish use the infinitive verbal form.
+
+[#regular-writers]
+== Editing on-line on GitHub
+
+The easiest way of editing any of the Decidim's documents is using GitHub's own integrated editor.
+Once you are xref:prerequisites.adoc#create-github-account[logged into GitHub] you have two ways to arrive to the text you need to modify:
+
+* If you are visiting our documentation site at https://docs.decidim.org, you can open the online editor on any contents by following the "Edit this page" link.
+* You can navigate the source folder tree of any document in https://github.com/decidim?q=docs, select a file and press the edition button.
+
+NOTE: TODO: Adapt https://github.com/WGBH/pbucore/wiki/Contributing-to-the-project-through-Github-web-interface.
+
+The only other section you probably need to read for this lightweight editing workflow is <<asciidoc>>.
+In the case you want to navigate a repository in GitHub you better read <<folder-structure>> as well.
+
+[#asciidoc]
+== How to write Asciidoc
+
+We use Asciidoc as our markup language.
+There is a quite complete http://asciidoctor.org/docs/asciidoc-writers-guide/[Asciidoc tutorial].
+
+You can easily get acquainted with Asciidoc and try its features using the online editor https://asciidoclive.com[AsciidocLIVE].
+
+When you try to do more complex things you may need the http://asciidoctor.org/docs/user-manual/[Asciidoc User Manual], that contains a complete reference for the language.
+
+=== Asciidoc guidelines
+
+We try to adhere to http://asciidoctor.org/docs/asciidoc-recommended-practices/[good Asciidoc writing practices].
+
+Some highlights, and some guidelines that are specific to our setup follow:
+
+* For images, you simply need to write the filename (including extension), with no directory prefix:
++
+[source, asciidoc, subs="quotes"]
+----
+image::__IMAGE_FILE_NAME__[]
+----
+
+* Use ATX headers, this is, as example:
++
+[source, asciidoc]
+--
+= Introduction
+--
++
+instead of
++
+[source, asciidoc]
+--
+Introduction
+~~~~~~~~~~~~
+--
++
+Both are syntactically correct Asciidoc, but the former is more maintainable.
+
+* Try to write one sentence per line:
++
+--
+. Try to place a manual line break after every sentence.
+This will not be the case for text converted with Pandoc, but you can apply this rule for newly written text.
+. Do not split long sentences with extra line breaks (neither manually nor automatically), leave your editor do the _visual_ line wrapping for you.
+--
++
+Text written in this manner is better suited to get put under version control and better visualized in a variety of editors.
+
+[#folder-structure]
+== Folder structure of a document
+
+As explained in xref:overview.adoc#repos-and-vc[Repositories and version control], every document is stored in a _file repository_.
+All our repositories are based upon a template that sets up the same structure.
+
+There is a sub-folder for every language: [.path]#ca#, [.path]#en#, and [.path]#es#.
+Each language has a [.path]#nav.adoc# file that defines the left-hand menu, while the actual content is located in the [.path]#pages# folder.
+
+In more detail:
+
+[listing, subs="special characters, callouts, replacements, quotes"]
+----
+.
+├── *ca* <1>
+│   └── [...]
+├── *en* <2>
+│   ├── [...]
+│   └── modules
+│       └── ROOT
+│           ├── [...]
+│           ├── assets
+│           │   ├── attachments <3>
+│           │   └── *images* <4>
+│           │       └── _SOME_IMAGE_.png
+│           └── *pages* <5>
+│               ├── _SOME_FILE_.adoc
+│               ├── _partials <6>
+│               │   ├── CONTRIBUTING.adoc <7>
+│               │   └── *README.adoc* <8>
+│               ├── single-page.adoc <9>
+|               └── [...]
+├── *es* <10>
+│   └── [...]
+├── README.adoc
+└── [...]
+----
+<1> Folder for the Catalan version.
+It has the same structure as the English version.
+<2> Folder for the English version.
+<3> All files to be downloaded from the website (e.g. PDF files) belong to this folder.
+<4> All images (in PNG, SVG or JPEG format) are stored here.
+<5> All text for the document is placed in this folder, with an `.adoc` file for every chapter or section.
+<6> This folder contains `.adoc` files that are meant to be displayed only as _includes_ of `.adoc` files in folder `pages`.
+<7> Authorship criteria and how to contribute to this document.
+You do not need to change this file.
+<8> Metadata file: it defines a value for attributes like `\{title}`, `\{authors}`, `\{summary}`, etc. that can be reused all across the document source files.
+<9> A file including all other `.adoc` files.
+See <<add-ref-to-single-page>>.
+<10> Folder for the Spanish version.
+It has the same structure as the English version.
+
+You can browse online a repository containing one of our documents, e.g. https://github.com/decidim/docs-features/tree/new-template, and check that this folder structure is fulfilled.
+
+A more in-depth description of this folder structure is given in xref:document-template.adoc#repo-anatomy[Anatomy of a repository].
+
+[#power-writers]
+== Power writing with Visual Studio Code
+
+In this section we assume you have xref:prerequisites.adoc#install-vscode[installed Visual Studio Code].
+
+The main difference with respect to <<regular-writers>> is that here we will show how to edit files in a local document repository, and how to synchronize with the global, online repository.
+
+[#vscode-repo-clone]
+=== Clone a repository to work offline
+
+To edit with Visual Studio Code you need to clone a GitHub repository locally in your own computer:
+
+. Go to the GitHub page of the document you want to work on, e.g., `https://github.com/decidim/docs-social-contract`.
+. Press button btn:[Clone or download].
+. Copy the repository URL for HTTPS.
+. In Visual Studio Code, go to menu:View[Command Palette] and select command `Git: Clone`.
+. Paste the URL of the repository and press kbd:[Enter].
+. Select the destination folder.
+A new folder with the name of the repository will be created inside the folder you select.
+
+Now Visual Studio Code gives you the option of opening the newly created folder, or adding it to the current workspace.
+We suggest to cancel and reject both options, and then follow the advice given in <<vscode-spell-checker>>.
+
+[#vscode-repo-sync]
+=== Synchronize local changes with the global repository
+
+NOTE: TODO.
+
+=== Configure GitHub credentials
+
+NOTE: TODO.
+
+[#vscode-spell-checker]
+=== Use the spell checker
+
+Assuming you have xref:prerequisites.adoc#spell-checker-extension[installed the Visual Studio Code spell checker] and some dictionaries, you can set up a language at folder level.
+
+Our advice is to go to menu:File[Open Folder] and, instead of opening the root folder of a repository, open one of the language folders, i.e., either [.path]#ca#, or [.path]#en#, or [.path]#es# in our <<folder structure, standard template structure>>.
+In this way you can easily configure the language of the folder and your set up will be stored by Visual Studio Code for next sessions:
+
+. When editing some file in the folder, press the file name indicator in the down left corner of the editing window.
++
+image::vscode-filename-indicator.png[]
+
+. In the language selection panel, enable the "Folder" level.
+In the "Folder" column, enable the language you are editing for (british English in the example image) and disable all other languages.
++
+image::vscode-select-languages.png[]
+
+
+[#fill-up-metadata]
+== Fill up the metadata
+
+For every document we need to define some basic information:
+
+* Title
+* Version
+* Authors
+* Summary
+* Keywords
+* [...]
+
+Most of this values are defined in one single place (well, once per language, in fact), and then reused everywhere.
+In this way we do not need to replace more than one string when one of this values is updated, and we keep things consistent.
+The exception is the title of the document, that is defined twice, but let document administrators xref:administrators.adoc#document-config-file[handle this].
+
+This is possible thanks to what it is called _attribute_ in Asciidoc terminology.
+Inside an Asciidoc document we can define a series of attributes in this way:
+
+[source, asciidoc]
+----
+:doctitle: Eleanor Rigby (Lyrics)
+:authors: John Lennon, Paul McCartney
+----
+
+As you can see, every attribute is defined in a different line, with the name of the attribute between colons (`:`).
+
+WARNING: The blank space between the name of the attribute and the value we assign to it is mandatory.
+
+Then we can write `\{doctitle}` or `\{authors}` anywhere in the same `.adoc` file (or any `.adoc` file that includes the one assigning a value to those attributes) and these placeholders will be replaced to the assigned value ("Eleanor Rigby (Lyrics)" and "John Lennon, Paul McCartney" respectively).
+
+The place where all the relevant metadata for a document is defined (for the English language) is:
+
+.Metadata file path (English)
+****
+[.text-center]
+`en/modules/ROOT/pages/_partials/README.adoc`
+****
+
+Open this file, either online or with your desktop editor, and you will see at the beginning of the file a list of attributes.
+Every attribute is preceded by an explanation of what this attribute is used for, and if it is mandatory to assign it a value.
+The list of attributes ends with a line with the following content:
+
+[source, asciidoc]
+----
+// end::metadata[]
+----
+
+Lines beginning with `//` are not processed when generating HTML or other formats from Asciidoc.
+Do not touch anything after this line.
+
+The value of an attribute can be:
+
+* A single word (or a number, or a date, etc.)
+* A sentence
+* A paragraph
+
+[WARNING]
+--
+Do not write more than one paragraph as the value of an attribute.
+// When editing attributes in the `README.adoc` file, *do not leave blank lines between attribute definitions*.
+--
+
+The `README.adoc` file is included in all the other `.adoc` files contained in the document.
+This means that, once they are set up, you can use any of the attributes in any other file.
+Some of the files already present in the repository use these attributes in different ways.
+For instance, file `doc-info.adoc` formats all metadata in a table for display in both HTML and PDF format.
+
+[IMPORTANT]
+--
+The file [.path]#README.adoc# in the root of the repository is meant to be an exact copy of [.path]#en/modules/ROOT/pages/_partials/README.adoc#.
+Its purpose is to show the metadata in the GitHub page of the document repository.
+
+Unfortunately, every time we change the file [.path]#en/modules/ROOT/pages/_partials/README.adoc# we need to manually update de copy in the root folder.
+You can do this either copy-and-pasting using the GitHub web interface, or using the `cp` command (and then commit and synchronize) if you are a <<power-writers, power writer>>.
+
+All of this will not be necessary once https://github.com/github/markup/issues/1095[GitHub web interface implements support for Asciidoc includes].
+--
+
+You have to <<vscode-repo-sync, commit and synchronize with GitHub>> all the changes you have introduced to the different [.paht]#README.adoc# files.
+Use a commit message similar to "(EN) Update metadata".
+Skip the "(EN)" part if you are committing changes for all languages.
+
+[#create-page]
+== Create a new documentation page
+
+Every content we want to see converted to a single web page in https://docs.decidim.org must be written to its own Asciidoc file.
+For example, for large documents, at least every chapter or major section must have its own `.adoc` file.
+If some section is very long, it can also be split up into smaller source files/web pages.
+
+The smaller the contents, the easier is to reuse them by _including_ in another place.
+But it is not necessary to make very small pages either, you still have the possibility to _link_ to any internal header from anywhere in the documentation site.
+
+In order to add a new page to your document, follow the steps in the next sections.
+
+:!step:
+=== (Step {counter:step:1}) Add a new Asciidoc file to the repository
+
+The file must be placed in [.path]#\{LANG}/modules/ROOT/pages#.
+
+The file name should be based upon the title of the section it is going to contain, and must adhere to the following conventions:
+
+* Use only *lower case* letters, numbers, and "-" (hyphen) symbol. Avoid any other character, including punctuation symbols.
+* Avoid accents or any other character modifiers.
+* Use "-" (hyphen) to separate words.
+* The file name must be in *English*.
+* Use extension: `.adoc`.
+* Optionally reduce the length of the name if name clashes seem improbable.
+Take into account that those names will be used also as URLs in the documentation site.
+
+[#file-naming-example]
+.Page/section file naming
+====
+If your section or chapter is named "Deliberative Democracy: How About That?" two possible names would be:
+
+* `deliberative-democracy-how-about-that.adoc`
+* `deliberative-democracy.adoc`
+====
+
+[IMPORTANT]
+--
+The same file name *must* be used in all languages if the document has translations.
+So, folders `en/modules/ROOT/pages`, `ca/modules/ROOT/pages` and `es/modules/ROOT/pages` should all contain the same files, and all files should be named in English.
+--
+
+Copy the following text to the beginning of the file (the same text appears in file `introduction.adoc` from the template), replacing header "Introduction" to the true title of your new section:
+
+[source, asciidoc]
+----
+= Introduction <1>
+:experimental:
+:icons: font
+:page-partial:
+:source-highlighter: highlightjs
+
+\ifndef::env-site,env-github[]
+include::_attributes.adoc[] <2>
+\endif::[]
+
+include::{partialsdir}/README.adoc[tag=metadata] <3>
+
+// Start writing here
+----
+<1> Header to replace.
+The rest of the text can be copied verbatim.
+<2> This include is only necessary to get a correct preview while editing.
+<3> Including the `README.adoc` file, where attributes like `\{doctitle}`, `\{revnum}` (version), or `\{authors}` are defined, means that we can use any of these variables in our `.adoc` files.
+
+// // You can remove the line saying:
+//
+// [source, asciidoc]
+// ----
+// // Start writing here
+// ----
+//
+// It is useful only to avoid writing just below the last include, without an empty line, // which could cause problems.
+
+[#add-ref-to-single-page]
+=== (Step {counter:step:1}) Add a reference to the new file in `single-page.adoc`
+
+The template puts a file `single-page.adoc` in `{LANG}/modules/ROOT/pages`.
+
+Include the newly created `.adoc` file in `single-page.adoc`, following this example:
+
+.Inclusion in `single-page.adoc`
+====
+If your file is named `deliberative-democracy.adoc`, add a line
+
+[source, asciidoc]
+----
+\include::deliberative-democracy.adoc[]
+----
+
+To `single-page.adoc`.
+====
+
+In the file you will find highlighted 2 places where the inclusion is possible.
+For regular sections or chapters, use the second slot, and place the new `include` in the correct order with respect the already existing sections.
+Leave always a blank line between `include` directives.
+The first and third slots are for preambles and appendixes, respectively.
+
+At the beginning of the second slot you will find a directive
+
+[source, asciidoc]
+----
+\include::introduction.adoc[]
+----
+
+given as example.
+Replace it if your document does not need a file named `introduction.adoc`.
+
+File `single-page.adoc` has three purposes:
+
+1. During writing, allows to get a rendered preview of the whole document. This only works for desktop, offline editors.
+2. It is used to generate a _single page_ view of the document in HTML that can be linked from the documentation site.
+3. It is also the base to generate a PDF file.
+
+=== (Step {counter:step:1}) Add a reference to the new file in `nav.adoc`
+
+File [.path]#\{LANG}/modules/ROOT/nav.adoc# can contain references to any files or sections in the documents.
+Its items and sub-items are used to present a navigation menu for the document (you can think of it as a table of contents).
+
+NOTE: TODO: navigation menu screenshot.
+
+Add a reference to the new file:
+
+.Reference from `nav.adoc`
+====
+If your file is named `deliberative-democracy.adoc`, add a line
+
+[source, asciidoc]
+----
+* xref:deliberative-democracy.adoc[Deliberative democracy]
+----
+
+To `nav.adoc`.
+
+The text between brackets is what will be shown in the navigation menu.
+====
+
+=== (Step {counter:step:1}) Commit and synchronize your changes
+
+The new file will not be available to the other authors until you <<vscode-repo-sync, commit and synchronize all the changes with GitHub>>.
+Use a commit message similar to "(EN) Add deliberative-democracy.adoc file".
+Skip the "(EN)" part if you are committing changes for all languages.
+
+== When something goes wrong with Git
+
+NOTE: TODO

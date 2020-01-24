@@ -1,0 +1,329 @@
+= Récup another webpage pour en faire un tuto exploitable pour les TEB
+Olivier TURLIER <o.turlier@gmail.com>
+v.1.01, 19 janvier 2020, édition initiale
+//include::_attributes.adoc[]
+
+// variables
+:url_github: https://github.com/
+:fablab: pass:q[*FAB__e__LAB__e__*]
+:dblcmd: Double Commander
+:url_dblcmd: https://doublecmd.sourceforge.io/
+:gh: Grasshopper3D
+:adoc: Asciidoc
+:loo: LibreOffice
+:url_tutogh: https://blog.ramboll.com/rcd/tutorials/a-beginners-guide-to-visual-scripting-with-grasshopper.html
+
+
+== Introduction
+
+
+=== Résumé
+
+.icon:graduation-cap[] Objectifs pédagogiques
+****
+icon:tags[role="blue"] **Pandoc**, **Wget**, **Path**,
+ **Asciidoc**, **Antora**, **Ressources informatiques**
+
+icon:check[role="green"] Connaissances : icon:cogs[] icon:cogs[] icon:cogs[]
+
+icon:signal[role="red"] Niveau technique : icon:star[] icon:star[]
+
+icon:hourglass-start[role="gray"] Temps de lecture : 10 minutes
+****
+
+
+=== Point de départ : un tuto inéressant sur {gh}
+
+ça se passe là : {url_tutogh}[un bon tuto sur {gh} en Angliche,window="_blank"] yes!
+// ,window="_blank"
+
+.ce qu'il y a :
+* un bon tut pour démarrer avec {gh},
+* plein d'images animées en .gif, c'est motivant
+
+== Première récup
+
+****
+web -> docx -> {adoc}
+****
+
+=== web -> word
+
+copie colle la page
+
+. enregistrement page web
+** A beginner’s guide to visual scripting with Grasshopper – Computational Design.html
+** création du dossier éponyme censé contenir toutes les images : les gifs ne sont pas enregistrés!
++
+. copie/colle sur un doc word
+. enregistrement : `beginners-tut-gh.docx`
+
+=== word -> {adoc}
+
+.ouverture/optimisation word & conversion avec Pandoc
+. ouverture word et optimisation :
+** des images pour être au maximum en toute largeur de page (=réduction trop grande largeur de certaines images)
+** des styles de titres et de paragraphes qui doivent être _cohérents_ :
+*** titre, titre 1, titre 2 (pas besoin d'en modifier le style, il suffit juste de l'appliquer)
+*** listes à puces ou numérotées
+** suppression des espaces insécables (dans {loo} on les voit facilement car c'est des rectangles gris) :
+*** avec Grammalecte, après install
+*** avec cette manip : #tbd#
+** Comme cela reste un format de document transitoire, on ne fait rien d'autre!
+. conversion word -> {adoc} avec Pandoc et enregistrement des images dans le dossier `media` (Pandoc sait pas faire mieux que ce nom là)
+  pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --extract-media=. beginners-tut-gh.docx > beginners-tut-gh.adoc
+
+
+Pandoc n'a pas fait la conversion des styles de titre et a créé des lignes inutiles ...
+
+.optimisation du fichier {adoc} créé par Pandoc
+. ajout des titres hiérarchiques (\1. -> =, 2.1 -> ==, etc.) <- heureusement que les titres étaient numérotés dans word!
+. remplacement du nom de dossier media par images (pratique courante avec les docs {adoc}, utilisée ensuite pour le partage web avec la plateforme Antora) : 27 remplacements
+. suppression des lignes
+. on pourrait remplacer le lien youtube par l'affichage en vrai ...
+** de ...  to view `\https://www.youtube.com/playlist?list=PLaHDu7VE0uzk0KWLCht14nqU42tbj9JVS[_on YouTube_]`. ...
+** par ... to view `\video::QE1u7HaX6FM[youtube,width=400,height=250,opts="autoplay,loop,modest"]`
+** mais ça ne marche pas car le propriétaire a désactivé la lecture sur d'autres sites webs
+
+// https://www.youtube.com/playlist?list=PLaHDu7VE0uzk0KWLCht14nqU42tbj9JVS <- playlist "Digital Parametric Engineering"
+// https://www.youtube.com/watch?v=QE1u7HaX6FM&list=PLaHDu7VE0uzk0KWLCht14nqU42tbj9JVS&index=2&t=0s <- Digital Parametric Engineering | Session 0.1
+
+
+=== {adoc} -> web
+
+Bouclons la boucle pour vérifier si la conversion {adoc} -> marche, rendant ainsi notre document insérables dans les ressources formatives TEB publiées par la plateforme Antora
+
+ asciidoctor beginners-tut-gh.adoc -> ça marche impec!
+
+
+== Seconde récup
+
+****
+web -> {adoc} (avec Pandoc)
+web -> gifs (avec Wget)
+****
+
+=== web -> {adoc}
+
+. récupération directe de la page html vers {adoc}
+** Commande pandoc pour récupérer toute la page au format asciidoc (sauf les images, il y aura un lien internet pour les afficher)
++
+ pandoc -s -r html --atx-headers --wrap=none -f html -t asciidoc https://blog.ramboll.com/rcd/tutorials/a-beginners-guide-to-visual-scripting-with-grasshopper.html > a-beginners-guide-to-visual-scripting-with-grasshopper.adoc
++
+. pas d'images !
+
+=== images gif en local
+
+téléchargement des images gif de cette cette page web uniquement
+
+ cd images
+ wget -A .gif -r -l 1 -H https://blog.ramboll.com/rcd/tutorials/a-beginners-guide-to-visual-scripting-with-grasshopper.html
+
+On s'est servi de l'utilitaire `Wget` qu'il faut installer. On otient tout un tas de répertoires quasiments vides, et on trouve enfin les gifs dans (on est dans `images`) /blog.ramboll.com/rcd/files/2017/10/[...] la loose ...
+
+.après la commande Wget
+image:wget-apres.png[]
+
+.optimisation des images
+. déplacer les gifs à la racine du répertoire `images`
+. supprimer le reste ...
+
+
+=== optimisation du fichier {adoc}
+
+Pandoc a créé un fichier {adoc} contenant tous les infos d'en-tête & pied de page inutiles, ainsi que des liens internet pointant vers les images. Il faut :
+
+. supprimer en-tête & pied de page
+. hiéarchie des titres : il ne peut y avoir qu'un seul titre principal de niveau 0 (=) puis autant qu'on veut de titres 1, 2 & 3, à condition de ne pas en sauter (niet == -> ====)
+. remplacer les liens pointant vers les images par leur chemin en local :
++
+ de ... \http://blog.ramboll.com/rcd/files/2017/10/GHDataMatchingRule2.png[image:http://blog.ramboll.com/rcd/files/2017/10/GHDataMatchingRule2.png[image,width=996,height=320]]
++
+ à ... \image:GHDataMatchingRule2.png[image,width=996,height=320]]
+
+
+== Comparaison des 2 méthodes
+
+La première est plus simple, elle ne requiert pas d'utiliser Wget pour récupérer les images animées gif en local!
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+[cols="^.^1a,^.^1a"]
+|===
+
+|
+.Logo Github (clic -> nouvel onglet)
+image:github.png[width=400,link="https://github.com/",window="_blank"]
+|
+.Introduction à GIT+Github en francais ...
+video::hPfgekYUKgk[youtube,width=400,height=250,opts="autoplay,loop,modest"]
+//video::hPfgekYUKgk[youtube,width=800,height=450,opts="autoplay,loop,modest"]
+
+|===
+
+
+
+* {url_dblcmd}[{dblcmd},window="_blank"] : exploreur de fichiers ultra pratique, avec 2 panneaux principaux, que l'on peut agrémenter de pleins d'onglets (en faisant kbd:[Ctrl+T])
+
+
+ifndef::backend-pdf[]
+.Quelques _possibilités_ de {dblcmd}, yapluka! (clic -> image taille réelle dans un autre onglet)
+image:double-commander.png[,link="images/double-commander.png",window="_blank"]
+endif::[]
+
+ifdef::backend-pdf[]
+.Quelques _possibilités_ de {dblcmd}, yapluka!
+image:double-commander.png[1920,1080]
+endif::[]
+
+
+Il faut _cloner_ le dépôt distant vers un répertoire en local :
+[source,bash]
+----
+git clone https://github.com/oturlier/TEB-Ressources_CRM-mlh.git # <1>
+ ou ...
+git clone https://github.com/oturlier/TEB-Ressources_CRM-mlh.git Ressources-CRM # <2>
+----
+<1> clonage sans renomage en local, on obtiendra un nom de répetoire identique au dépôt distant
+<2> clonage avec _renommage_ en local vers *Ressources-CRM*
+
+Allez voir cet excellent https://rogerdudler.github.io/git-guide/index.fr.html[petit guide GIT,window="_blank"], qui est par ailleurs un exemple parfait de tutoriel étapes par étapes ...
+
+
+
+// run Asciidoctor with attribute allow-uri-read:
+// $ asciidoctor -a allow-uri-read sample.adoc
+//:allow-uri-read: <- doesn-t work, must be set on the commande line!
+//
+//:i18n-labels-uri: https://raw.githubusercontent.com/asciidoctor/asciidoctor/v1.5.5/data/locale
+..include::{i18n-labels-uri}/attributes.adoc[]
+// Simple caution block, where caption
+// should be replaced by Dutch text.
+CAUTION: Simpel bericht met `lang` document attribuut: {lang}.
+
+// Labels for example blocks are also
+// translated.
+.demonstraition comment faire
+====
+Bijvoorbeeld label voor voorbeelden is ook aangepast.
+====
+
+
+
+
+[source,groovy]
+----
+package com.mrhaki.adoc
+
+class Sample {
+    String username // <.>
+
+    String toString() {
+        "${username?.toUpperCase() ?: 'not-defined'}" // <.>
+    }
+}
+----
+<.> Simple property definition where Groovy will generate the `setUsername` and `getUsername` methods.
+<.> Return username in upper case if set, otherwise return `not-defined`.
+
+
+== Exercise
+
+. Implement the `Application` class with `main(String[] args)` method.
+
+=== Solution
+
+// The title attribute is used as
+// clickable text to open the example block.
+.Click to see solution
+[%collapsible]
+====
+[,java]
+----
+package mrhaki;
+
+import io.micronaut.runtime.Micronaut;
+
+public class Application {
+
+    public static void main(String[] args) {
+        Micronaut.run(Application.class);
+    }
+}
+----
+====
+
+
+
+
+
+
+= Tables
+:nofooter:
+
+.No striping
+// Alternative to stripes attributes is
+// setting role "stripes-none" as [.stripes-none,cols="1,2"].
+[stripes=none,cols="1,2"]
+|===
+| Name | Description
+
+| Asciidoctor
+| *Awesome* way to write documentation
+
+| Micronaut
+| Low resource usage and fast startup micro services
+|===
+
+.All rows
+// Alternative to stripes attributes is
+// setting role "stripes-all" as [.stripes-all,cols="1,2"].
+[stripes=all,cols="1,2"]
+|===
+| Name | Description
+
+| Asciidoctor
+| *Awesome* way to write documentation
+
+| Micronaut
+| Low resource usage and fast startup micro services
+|===
+
+.Odd rows
+// Alternative to stripes attributes is
+// setting role "stripes-odd" as [.stripes-odd,cols="1,2"].
+[stripes=odd,cols="1,2"]
+|===
+| Name | Description
+
+| Asciidoctor
+| *Awesome* way to write documentation
+
+| Micronaut
+| Low resource usage and fast startup micro services
+|===
+
+.Even rows (default)
+// Alternative to stripes attributes is
+// setting role "stripes-even" as [.stripes-even,cols="1,2"].
+[stripes=even,cols="1,2"]
+|===
+| Name | Description
+
+| Asciidoctor
+| *Awesome* way to write documentation
+
+| Micronaut
+| Low resource usage and fast startup micro services
+|===
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+

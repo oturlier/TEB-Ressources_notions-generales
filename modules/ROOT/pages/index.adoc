@@ -1,0 +1,25 @@
+= Ressources TEB : Notions générales
+//include::_attributes.adoc[]
+:icons: font
+
+== Contenu du site
+
+
+== Détections d'erreurs et comment contribuer
+
+Si vous trouvez une coquille, si vous avez des suggestions d'amélioration ou si vous souhaitez contribuer à l'édition de ce site, reportez vous svp au xref:comment_contribuer.adoc[Guide de contribution] pour les instructions à suivre.
+
+
+== Téléchargement d'une version imprimable
+
+Vous pouvez télécharger diverses compilations suivantes, sous forme de livre :
+
+* _Réglementation TEB_
+* _AutoCAD : guide pratique TEB_ : icon:download[link="https://rubygems.org/downloads/asciidoctor-1.5.2.gem"]
+* et encore ...
+//* xref:10.2@admin_manual:index.adoc[Administration Manual]
+//  ({docs-base-url}/server/10.2/admin_manual/ownCloud_Admin_Manual.pdf[Download PDF])
+//* xref:10.2@developer_manual:index.adoc[Developer Manual]
+//  ({docs-base-url}/server/10.2/developer_manual/ownCloud_Developer_Manual.pdf[Download PDF])
+//* xref:10.2@user_manual:index.adoc[User Manual]
+//  ({docs-base-url}/server/10.2/user_manual/ownCloud_User_Manual.pdf[Download PDF])

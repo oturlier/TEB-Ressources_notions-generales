@@ -1,0 +1,16 @@
+// Add to the following lists cross references to all the pages you want to see
+// listed in the navigation menu for this document.
+* Annexes éditoriales
+** xref:overview.adoc[Overview]
+** xref:prerequisites.adoc[Prerequisites]
+** Guides
+*** xref:Recup-another-webpage_pour-en-faire-un-tuto.adoc[Web, Word, Pandoc, Asciidoc]
+*** xref:authoring.adoc[For documentation writers]
+*** xref:administration.adoc[For document administrators]
+*** xref:documentation_good-document-types-docs.adoc[Documentation types]
+*** xref:TEB_workflow-editorial.adoc[Flux éditorial]
+** Appendixes
+*** xref:document-template.adoc[Document template in detail]
+*** xref:git-workflow-rationale.adoc[Rationale for Decidim's Git workflow]
+** xref:doc-info.adoc[_Document information_]
+** xref:contributing.adoc[_Authorship criteria and how to contribute to this document_]
